@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Who decides what's false? An AI answer for Kazakhstan</title>
+<meta name="description" content="Kazakh-language disinformation, a state that prosecutes false information, and an AI tool built for independent fact-checkers. PLS 419 final project by Akerke Mukhtarkyzy.">
+<script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&"IntersectionObserver" in window)document.documentElement.classList.add("anim")}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Onest:wght@400;500;700&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFFFF; --grid:#E2F1F7; --field:#BFE7F1; --sky:#0095B6; --sky-pale:#EAF7FB;
+  --ink:#0B3550; --ink-2:#3D5A6E; --gold:#F5B800; --gold-data:#E0A100; --gold-pale:#FFF3C7;
+  --red:#C8102E; --red-pale:#FDE8EB; --amber-ink:#8A5A00; --blue-ink:#00668A;
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --body:"Onest",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --hand:"Caveat","Segoe Print","Comic Sans MS",cursive;
+  --flower12:polygon(100.0% 50.0%,99.8% 52.2%,99.3% 54.3%,98.4% 56.4%,97.3% 58.3%,95.9% 60.2%,94.4% 61.9%,94.9% 64.1%,95.1% 66.4%,95.1% 68.7%,94.8% 70.9%,94.2% 73.0%,93.3% 75.0%,92.1% 76.8%,90.5% 78.4%,88.7% 79.7%,86.8% 80.9%,84.7% 81.8%,82.5% 82.5%,81.8% 84.7%,80.9% 86.8%,79.7% 88.7%,78.4% 90.5%,76.8% 92.1%,75.0% 93.3%,73.0% 94.2%,70.9% 94.8%,68.7% 95.1%,66.4% 95.1%,64.1% 94.9%,61.9% 94.4%,60.2% 95.9%,58.3% 97.3%,56.4% 98.4%,54.3% 99.3%,52.2% 99.8%,50.0% 100.0%,47.8% 99.8%,45.7% 99.3%,43.6% 98.4%,41.7% 97.3%,39.8% 95.9%,38.1% 94.4%,35.9% 94.9%,33.6% 95.1%,31.3% 95.1%,29.1% 94.8%,27.0% 94.2%,25.0% 93.3%,23.2% 92.1%,21.6% 90.5%,20.3% 88.7%,19.1% 86.8%,18.2% 84.7%,17.5% 82.5%,15.3% 81.8%,13.2% 80.9%,11.3% 79.7%,9.5% 78.4%,7.9% 76.8%,6.7% 75.0%,5.8% 73.0%,5.2% 70.9%,4.9% 68.7%,4.9% 66.4%,5.1% 64.1%,5.6% 61.9%,4.1% 60.2%,2.7% 58.3%,1.6% 56.4%,0.7% 54.3%,0.2% 52.2%,0.0% 50.0%,0.2% 47.8%,0.7% 45.7%,1.6% 43.6%,2.7% 41.7%,4.1% 39.8%,5.6% 38.1%,5.1% 35.9%,4.9% 33.6%,4.9% 31.3%,5.2% 29.1%,5.8% 27.0%,6.7% 25.0%,7.9% 23.2%,9.5% 21.6%,11.3% 20.3%,13.2% 19.1%,15.3% 18.2%,17.5% 17.5%,18.2% 15.3%,19.1% 13.2%,20.3% 11.3%,21.6% 9.5%,23.2% 7.9%,25.0% 6.7%,27.0% 5.8%,29.1% 5.2%,31.3% 4.9%,33.6% 4.9%,35.9% 5.1%,38.1% 5.6%,39.8% 4.1%,41.7% 2.7%,43.6% 1.6%,45.7% 0.7%,47.8% 0.2%,50.0% 0.0%,52.2% 0.2%,54.3% 0.7%,56.4% 1.6%,58.3% 2.7%,60.2% 4.1%,61.9% 5.6%,64.1% 5.1%,66.4% 4.9%,68.7% 4.9%,70.9% 5.2%,73.0% 5.8%,75.0% 6.7%,76.8% 7.9%,78.4% 9.5%,79.7% 11.3%,80.9% 13.2%,81.8% 15.3%,82.5% 17.5%,84.7% 18.2%,86.8% 19.1%,88.7% 20.3%,90.5% 21.6%,92.1% 23.2%,93.3% 25.0%,94.2% 27.0%,94.8% 29.1%,95.1% 31.3%,95.1% 33.6%,94.9% 35.9%,94.4% 38.1%,95.9% 39.8%,97.3% 41.7%,98.4% 43.6%,99.3% 45.7%,99.8% 47.8%);
+  --flower8:polygon(100.0% 50.0%,99.9% 52.2%,99.5% 54.3%,98.9% 56.4%,98.1% 58.5%,97.1% 60.4%,95.9% 62.3%,94.5% 64.0%,93.1% 65.7%,91.6% 67.2%,91.6% 69.4%,91.4% 71.6%,91.1% 73.8%,90.7% 75.9%,90.0% 78.0%,89.1% 80.0%,88.1% 81.9%,86.8% 83.7%,85.4% 85.4%,83.7% 86.8%,81.9% 88.1%,80.0% 89.1%,78.0% 90.0%,75.9% 90.7%,73.8% 91.1%,71.6% 91.4%,69.4% 91.6%,67.2% 91.6%,65.7% 93.1%,64.0% 94.5%,62.3% 95.9%,60.4% 97.1%,58.5% 98.1%,56.4% 98.9%,54.3% 99.5%,52.2% 99.9%,50.0% 100.0%,47.8% 99.9%,45.7% 99.5%,43.6% 98.9%,41.5% 98.1%,39.6% 97.1%,37.7% 95.9%,36.0% 94.5%,34.3% 93.1%,32.8% 91.6%,30.6% 91.6%,28.4% 91.4%,26.3% 91.1%,24.1% 90.7%,22.0% 90.0%,20.0% 89.1%,18.1% 88.1%,16.3% 86.8%,14.6% 85.4%,13.2% 83.7%,11.9% 81.9%,10.9% 80.0%,10.0% 78.0%,9.3% 75.9%,8.9% 73.8%,8.6% 71.6%,8.4% 69.4%,8.4% 67.2%,6.9% 65.7%,5.5% 64.0%,4.1% 62.3%,2.9% 60.4%,1.9% 58.5%,1.1% 56.4%,0.5% 54.3%,0.1% 52.2%,0.0% 50.0%,0.1% 47.8%,0.5% 45.7%,1.1% 43.6%,1.9% 41.5%,2.9% 39.6%,4.1% 37.7%,5.5% 36.0%,6.9% 34.3%,8.4% 32.8%,8.4% 30.6%,8.6% 28.4%,8.9% 26.2%,9.3% 24.1%,10.0% 22.0%,10.9% 20.0%,11.9% 18.1%,13.2% 16.3%,14.6% 14.6%,16.3% 13.2%,18.1% 11.9%,20.0% 10.9%,22.0% 10.0%,24.1% 9.3%,26.2% 8.9%,28.4% 8.6%,30.6% 8.4%,32.8% 8.4%,34.3% 6.9%,36.0% 5.5%,37.7% 4.1%,39.6% 2.9%,41.5% 1.9%,43.6% 1.1%,45.7% 0.5%,47.8% 0.1%,50.0% 0.0%,52.2% 0.1%,54.3% 0.5%,56.4% 1.1%,58.5% 1.9%,60.4% 2.9%,62.3% 4.1%,64.0% 5.5%,65.7% 6.9%,67.2% 8.4%,69.4% 8.4%,71.6% 8.6%,73.7% 8.9%,75.9% 9.3%,78.0% 10.0%,80.0% 10.9%,81.9% 11.9%,83.7% 13.2%,85.4% 14.6%,86.8% 16.3%,88.1% 18.1%,89.1% 20.0%,90.0% 22.0%,90.7% 24.1%,91.1% 26.3%,91.4% 28.4%,91.6% 30.6%,91.6% 32.8%,93.1% 34.3%,94.5% 36.0%,95.9% 37.7%,97.1% 39.6%,98.1% 41.5%,98.9% 43.6%,99.5% 45.7%,99.9% 47.8%);
+  --horn-gold:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 28'><g fill='none' stroke='%23F5B800' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'><path d='M28 25V17C28 8 38 3 44 8C49 12 47 19 41 19C37 19 36 14 40 13'/><path d='M28 17C28 8 18 3 12 8C7 12 9 19 15 19C19 19 20 14 16 13'/><path d='M0 25H56'/><path d='M0 9l3 3-3 3M56 9l-3 3 3 3'/></g></svg>");
+  --horn-sky:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 28'><g fill='none' stroke='%230095B6' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M28 25V17C28 8 38 3 44 8C49 12 47 19 41 19C37 19 36 14 40 13'/><path d='M28 17C28 8 18 3 12 8C7 12 9 19 15 19C19 19 20 14 16 13'/></g><circle cx='0' cy='22' r='2.4' fill='%23F5B800'/><circle cx='56' cy='22' r='2.4' fill='%23F5B800'/></svg>");
+  --grunge:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.55'/></filter><rect width='160' height='160' filter='url(%23g)'/></svg>");
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--field);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--blue-ink);text-underline-offset:2px}
+a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--red);outline-offset:3px;border-radius:4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- bands & ornaments ---------- */
+.horn-band{height:36px;background:var(--sky) var(--horn-gold) center/56px 28px repeat-x}
+.horn-rule{height:30px;margin:56px auto;max-width:640px;background:var(--horn-sky) center/56px 28px repeat-x;opacity:.9}
+.scallop{height:20px;background:radial-gradient(circle at 50% 0,var(--sky-pale) 19px,transparent 20px) 0 0/40px 20px repeat-x}
+
+/* ---------- hero ---------- */
+.hero{position:relative;background:var(--sky-pale);overflow:hidden}
+.hero-inner{position:relative;max-width:1080px;margin:0 auto;padding:56px 28px 40px;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:24px 40px;align-items:center}
+.cloud{position:absolute;background:#fff;border-radius:999px;opacity:.95}
+.cloud::before,.cloud::after{content:"";position:absolute;background:#fff;border-radius:50%}
+.c1{width:150px;height:44px;top:78px;left:3%}.c1::before{width:64px;height:64px;top:-30px;left:24px}.c1::after{width:46px;height:46px;top:-20px;left:78px}
+.c2{width:120px;height:38px;bottom:56px;left:46%}.c2::before{width:52px;height:52px;top:-26px;left:18px}.c2::after{width:38px;height:38px;top:-16px;left:62px}
+.sun{position:absolute;top:22px;right:4%;width:110px;height:110px}
+.hero-kz{font-family:var(--hand);font-weight:700;line-height:1.15;font-size:clamp(1.6rem,3.4vw,2.2rem);color:var(--blue-ink);margin:0 0 4px;transform:rotate(-2deg);transform-origin:left}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,6.4vw,4.6rem);line-height:1.02;letter-spacing:-.02em;margin:0;text-shadow:4px 4px 0 var(--gold)}
+.dek{font-size:1.15rem;max-width:34em;margin:20px 0 14px;color:var(--ink)}
+.byline{font-size:.95rem;color:var(--ink-2);margin:0}
+.stickers{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;position:relative}
+.sticker-wrap{filter:drop-shadow(3px 4px 0 var(--ink))}
+.sticker{width:186px;height:186px;clip-path:var(--flower12);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:26px 30px}
+.sticker b{font-family:var(--display);font-weight:800;font-size:2.1rem;line-height:1;letter-spacing:-.02em}
+.sticker span{font-size:.8rem;line-height:1.25;margin-top:6px}
+.sticker small{font-size:.68rem;color:var(--ink-2);margin-top:4px}
+.s-gold{background:var(--gold)}.s-white{background:#fff}.s-sky{background:var(--field)}
+.s-gold small{color:var(--ink)}
+.sw1{transform:rotate(-7deg)}.sw2{transform:rotate(5deg) translateY(14px)}.sw3{transform:rotate(-3deg) translateY(-6px)}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:20;background:var(--ink)}
+.nav ul{list-style:none;margin:0 auto;padding:10px 16px;max-width:1080px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.nav a{display:block;white-space:nowrap;color:#fff;text-decoration:none;font-weight:500;font-size:.92rem;padding:6px 14px;border-radius:999px;border:2px solid transparent}
+.nav a:hover{border-color:var(--gold)}
+.nav a.on{background:var(--gold);color:var(--ink)}
+.nav a:focus-visible{outline-color:var(--gold)}
+
+/* ---------- page ---------- */
+.page{position:relative;max-width:1000px;margin:44px auto 72px;background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:26px 26px;border:3px solid var(--ink);border-radius:30px;box-shadow:10px 10px 0 var(--sky);padding:64px 0 40px}
+section{padding:0 28px}
+.prose{max-width:68ch;margin-left:auto;margin-right:auto}
+.wide{max-width:900px;margin-left:auto;margin-right:auto}
+p{margin:0 0 1.05em}
+.sec-head{display:flex;align-items:center;gap:20px;margin-bottom:30px}
+.sec-num{flex:none;width:78px;height:78px;clip-path:var(--flower8);background:var(--gold);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.9rem;color:var(--ink)}
+.sec-num.alt{background:var(--sky);color:#fff}
+.kz{font-family:var(--hand);font-weight:700;font-size:1.75rem;line-height:1;color:var(--blue-ink);margin:0}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(1.7rem,4vw,2.45rem);line-height:1.08;letter-spacing:-.015em;margin:4px 0 0}
+h3{font-family:var(--display);font-weight:700;font-size:1.2rem;line-height:1.25;margin:2.4em 0 .7em}
+h3::before{content:"";display:inline-block;width:14px;height:14px;margin-right:10px;background:var(--gold);clip-path:var(--flower8);vertical-align:-1px}
+.cite{white-space:normal}
+section.prose{max-width:calc(68ch + 56px)}
+
+/* callouts */
+.note{position:relative;background:var(--gold-pale);border:2px solid var(--ink);border-radius:20px;padding:26px 28px 22px;margin:34px 0;font-size:1.12rem;line-height:1.55;transform:rotate(-.6deg)}
+.note::before{content:"";position:absolute;top:-14px;left:50%;width:110px;height:26px;margin-left:-55px;background:rgba(0,149,182,.35);transform:rotate(-3deg)}
+.note strong{font-family:var(--display);font-weight:700;font-size:1rem;display:block;margin-bottom:6px}
+.scope{font-style:italic;color:var(--ink-2);border-top:2px dotted var(--sky);padding-top:12px}
+.silent{border:3px dashed var(--ink-2);border-radius:22px;padding:22px 26px 10px;margin:30px 0;background:rgba(255,255,255,.85)}
+.silent h4{font-family:var(--display);font-size:1.05rem;margin:0 0 12px;display:flex;align-items:center;gap:10px}
+.silent ul{margin:0;padding-left:1.1em}
+.silent li{margin-bottom:.6em}
+.gap{position:relative;border:3px solid var(--red);background:var(--red-pale);border-radius:20px;padding:24px 28px 18px;margin:30px 0;font-size:1.08rem}
+.gap strong{color:var(--red)}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;margin:22px auto 30px;border:2px solid var(--ink);border-radius:18px;background:#fff}
+table{border-collapse:collapse;width:100%;font-size:.93rem;line-height:1.45}
+caption{caption-side:top;text-align:left;font-family:var(--display);font-weight:700;font-size:1rem;padding:16px 18px 10px}
+th,td{text-align:left;vertical-align:top;padding:10px 14px;border-top:1px solid var(--grid)}
+thead th{background:var(--field);font-weight:700;border-top:0}
+td:first-child{font-weight:600}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+
+/* figures */
+figure{margin:30px auto 34px}
+.fig{background:#fff;border:2px solid var(--ink);border-radius:22px;padding:24px 26px 18px}
+.fig-title{font-family:var(--display);font-weight:700;font-size:1.05rem;margin:0 0 4px}
+.panels{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:30px;margin-top:14px}
+.panel h5{font-size:.95rem;margin:0 0 2px}
+.panel .sub{font-size:.85rem;color:var(--ink-2);margin:0 0 14px}
+.waffle{display:grid;grid-template-columns:repeat(10,24px);gap:5px;margin-bottom:16px}
+.cell{width:24px;height:24px;border-radius:5px}
+.k-court{background:var(--red)}.k-drop{background:var(--sky)}.k-susp{background:var(--gold-data)}.k-open{background:#fff;box-shadow:inset 0 0 0 2px var(--ink)}
+.legend{list-style:none;margin:0;padding:0;font-size:.88rem;display:grid;gap:5px}
+.legend li{display:flex;align-items:center;gap:8px}
+.legend i{flex:none;width:14px;height:14px;border-radius:4px}
+.legend.row{display:flex;flex-wrap:wrap;gap:6px 18px;margin-bottom:12px}
+.bars{display:grid;gap:14px}
+.bar-lab{font-size:.88rem;line-height:1.3;margin-bottom:4px}
+.bar-lab span{display:block;color:var(--ink-2);font-size:.8rem}
+.track{display:flex;align-items:center;gap:8px;border-left:2px solid var(--ink-2)}
+.bar{height:22px;border-radius:0 4px 4px 0;min-width:3px;width:calc(var(--v) / 51 * 82%)}
+.b-crim{background:var(--sky)}.b-adm{background:var(--gold-data)}
+.track b{font-variant-numeric:tabular-nums;font-size:.95rem}
+figcaption{font-size:.9rem;color:var(--ink-2);margin-top:14px;line-height:1.5}
+details{margin-top:12px;font-size:.9rem}
+summary{cursor:pointer;font-weight:600;color:var(--blue-ink)}
+details .tbl-wrap{margin:12px 0 4px}
+.tip{position:fixed;z-index:50;pointer-events:none;background:var(--ink);color:#fff;font-size:.82rem;line-height:1.35;padding:7px 10px;border-radius:8px;max-width:240px;opacity:0;transition:opacity .12s}
+.tip.on{opacity:1}
+
+@media (max-width:820px){
+  .hero-inner{grid-template-columns:1fr;padding-top:44px}
+  .sun{width:80px;height:80px}
+  .panels{grid-template-columns:1fr}
+  .page{margin:24px 10px 48px;border-radius:22px;box-shadow:6px 6px 0 var(--sky);padding-top:44px}
+  section{padding:0 18px}
+  section.prose{max-width:none}
+}
+@media (max-width:520px){
+  .sticker{width:156px;height:156px;padding:20px 24px}
+  .sticker b{font-size:1.7rem}
+  .sec-num{width:62px;height:62px;font-size:1.5rem}
+  .waffle{grid-template-columns:repeat(10,20px);gap:4px}.cell{width:20px;height:20px}
+}
+/* ---------- section 3: camps ---------- */
+.camps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 24px;margin:34px auto}
+.camp{position:relative;background:#fff;border:2px solid var(--ink);border-radius:20px;padding:26px 24px 10px;font-size:.98rem;line-height:1.6}
+.camp:nth-child(odd){transform:rotate(-.5deg)}.camp:nth-child(even){transform:rotate(.6deg)}
+.camp::before,.postcard::before,.example::before{content:"";position:absolute;top:-13px;left:28px;width:84px;height:24px;background:rgba(245,184,0,.55);transform:rotate(-4deg)}
+.camp:nth-child(even)::before{left:auto;right:28px;transform:rotate(5deg);background:rgba(0,149,182,.35)}
+.camp h4,.postcard h4{font-family:var(--display);font-weight:700;font-size:1.02rem;line-height:1.3;margin:0}
+.disc{font-family:var(--hand);font-weight:700;font-size:1.3rem;line-height:1.1;color:var(--blue-ink);margin:2px 0 10px}
+
+/* ---------- section 4 ---------- */
+.lead-in{font-family:var(--display);font-weight:700;font-size:1rem;margin-top:1.6em}
+.steps{list-style:none;padding:0;margin:26px auto 34px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;counter-reset:step}
+.steps li{position:relative;background:#fff;border:2px solid var(--ink);border-radius:20px;padding:26px 18px 14px;font-size:.94rem;line-height:1.55;counter-increment:step}
+.steps li::before{content:counter(step);position:absolute;top:-18px;left:16px;width:38px;height:38px;display:grid;place-items:center;background:var(--gold);clip-path:var(--flower8);font-family:var(--display);font-weight:800;font-size:1rem}
+.steps li:not(:last-child)::after{content:"";position:absolute;right:-21px;top:54px;width:20px;height:20px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path d='M2 10h14M11 4l6 6-6 6' fill='none' stroke='%230B3550' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat}
+.steps svg{display:block;margin:2px 0 8px}
+.steps strong{display:block;font-family:var(--display);font-size:1rem;margin-bottom:4px}
+.example{position:relative;background:var(--sky-pale);border:2px solid var(--ink);border-radius:24px;padding:28px 28px 12px;margin:34px 0}
+.example .stamp{position:absolute;top:-18px;right:22px;background:var(--sky-pale)}
+.facts{margin:30px 0;display:grid;gap:16px}
+.facts div{display:grid;grid-template-columns:7.2rem minmax(0,1fr);gap:16px;align-items:baseline;padding-bottom:14px;border-bottom:2px dotted var(--field)}
+.facts dt{font-family:var(--display);font-weight:700;font-size:.95rem}
+.facts dd{margin:0}
+.cards2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 24px;margin:30px auto}
+.postcard{position:relative;background:#fff;border:2px solid var(--ink);border-radius:18px;padding:26px 24px 10px;font-size:.97rem;line-height:1.6}
+.postcard h4{padding-right:64px;margin-bottom:10px}
+.postmark{position:absolute;top:-24px;right:18px;background:#fff;width:60px;height:60px;border:2px dashed var(--sky);border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:.85rem;color:var(--blue-ink);transform:rotate(12deg)}
+
+/* stamps */
+.stamp{display:inline-block;font-family:var(--display);font-weight:800;font-size:.84rem;letter-spacing:.07em;text-transform:uppercase;line-height:1;padding:.7em .95em;border:3px solid currentColor;border-radius:9px;box-shadow:inset 0 0 0 3px #fff,inset 0 0 0 5px currentColor;transform:rotate(-6deg);-webkit-mask-image:var(--grunge);mask-image:var(--grunge);white-space:nowrap}
+.st-true{color:var(--blue-ink)}.st-mis{color:var(--amber-ink)}.st-false{color:var(--red)}.st-ink{color:var(--ink)}
+.example .stamp{box-shadow:inset 0 0 0 3px var(--sky-pale),inset 0 0 0 5px currentColor}
+.scale{display:flex;flex-wrap:wrap;align-items:center;gap:16px 22px;margin:22px 0 8px;padding:18px 20px;background:#fff;border:2px solid var(--ink);border-radius:18px}
+.scale .stamp:nth-child(even){transform:rotate(4deg)}
+.claim{position:relative;background:#fff;border:2px solid var(--ink);border-left-width:12px;border-radius:20px;padding:24px 26px 8px;margin:26px 0}
+.v-true{border-left-color:var(--sky)}.v-mis{border-left-color:var(--gold-data)}.v-false{border-left-color:var(--red)}
+.claim h4{font-family:var(--display);font-weight:700;font-size:1.15rem;line-height:1.3;margin:0 0 14px;padding-right:12.5rem}
+.claim h4 small{display:block;font-family:var(--body);font-weight:700;font-size:.85rem;color:var(--ink-2);margin-bottom:2px}
+.claim .verdict{position:absolute;top:22px;right:22px;margin:0}
+.stamp.pending{opacity:0}
+.stamp.thunk{animation:thunk .4s cubic-bezier(.2,.8,.3,1.3) both}
+@keyframes thunk{0%{opacity:0;transform:rotate(-16deg) scale(1.9)}100%{opacity:1;transform:rotate(-6deg) scale(1)}}
+
+/* verdict */
+.conditions{list-style:none;padding:0;margin:22px 0 28px;display:grid;gap:12px;counter-reset:c}
+.conditions li{position:relative;background:#fff;border:2px solid var(--ink);border-radius:16px;padding:14px 18px 14px 66px;counter-increment:c}
+.conditions li::before{content:counter(c);position:absolute;left:14px;top:11px;width:38px;height:38px;display:grid;place-items:center;background:var(--sky);color:#fff;clip-path:var(--flower8);font-family:var(--display);font-weight:800}
+.matrix th,.matrix td{text-align:center;vertical-align:middle}
+.matrix th:first-child,.matrix td:first-child{text-align:left}
+.matrix thead th{font-size:.82rem;line-height:1.25}
+.matrix thead i{display:block;width:16px;height:16px;border-radius:50%;margin:0 auto 5px}
+.dot{display:inline-block;width:18px;height:18px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 2px var(--ink)}
+.closing{position:relative;max-width:780px;margin:46px auto 8px;text-align:center;background:var(--ink);color:#fff;border-radius:26px;padding:52px 34px 36px;overflow:hidden}
+.closing::before{content:"";position:absolute;top:0;left:0;right:0;height:30px;background:var(--horn-gold) center/56px 28px repeat-x}
+.closing p{font-family:var(--display);font-weight:700;font-size:clamp(1.25rem,3vw,1.8rem);line-height:1.3;margin:0}
+
+/* statement & references */
+.statement{background:var(--gold-pale);border:2px solid var(--ink);border-radius:20px;padding:24px 28px 10px}
+.refs{font-size:.86rem;line-height:1.5;padding-left:2.4em;margin:0}
+.refs li{margin-bottom:.6em;overflow-wrap:anywhere}
+.refs li::marker{font-weight:700;color:var(--blue-ink)}
+footer{text-align:center;padding:0 16px 44px;font-size:.92rem}
+footer .horn-band{margin:0 -16px 20px}
+
+@media (max-width:820px){
+  .camps,.cards2{grid-template-columns:1fr}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .steps li:nth-child(2)::after{display:none}
+}
+@media (max-width:640px){
+  .steps{grid-template-columns:1fr}
+  .steps li::after{display:none}
+  .claim{padding:22px 18px 6px}
+  .claim h4{padding-right:0}
+  .claim .verdict{position:static;margin:0 0 16px 4px}
+  .facts div{grid-template-columns:1fr;gap:4px}
+}
+/* receipt */
+.receipt{position:relative;max-width:520px;margin:26px auto 44px;background:#fff;border:2px solid var(--ink);border-bottom:0;border-radius:18px 18px 0 0;padding:20px 26px 10px;transform:rotate(-.8deg)}
+.receipt::after{content:"";position:absolute;left:-2px;right:-2px;bottom:-13px;height:14px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='14'><path d='M0 0L8 12L16 0Z' fill='%23fff'/><path d='M0 1L8 12L16 1' fill='none' stroke='%230B3550' stroke-width='2'/></svg>") 0 0/16px 14px round no-repeat;background-repeat:round no-repeat}
+.receipt-title{font-family:var(--display);font-weight:700;font-size:1.05rem;text-align:center;margin:0 0 6px;padding-bottom:10px;border-bottom:2px dashed var(--ink-2)}
+.receipt ol{list-style:none;margin:0;padding:0;counter-reset:r}
+.receipt li{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed var(--field);counter-increment:r}
+.receipt li a{color:var(--ink);text-decoration:none;font-weight:600}
+.receipt li a::before{content:counter(r) ". ";color:var(--ink-2);font-weight:500}
+.receipt li a:hover{text-decoration:underline}
+.receipt .stamp{font-size:.7rem;padding:.6em .8em}
+.receipt li:nth-child(even) .stamp{transform:rotate(4deg)}
+.receipt-total{display:flex;justify-content:space-between;align-items:baseline;margin:10px 0 0;padding-top:10px;border-top:2px dashed var(--ink-2);font-family:var(--display);font-weight:700}
+.receipt-total a{color:var(--ink)}
+.cost{display:inline-block;margin-left:6px;padding:1px 9px;border:1.5px solid var(--ink);border-radius:999px;font-size:.78rem;font-weight:600;color:var(--ink);background:var(--sky-pale)}
+.matrix thead th span{display:block;font-weight:500;color:var(--ink-2);font-size:.74rem;margin-top:2px}
+.receipt li a{min-width:0}.receipt .stamp{flex:none}
+@media (max-width:520px){.receipt{padding:16px 16px 8px}}
+/* ---------- motion (only when html.anim is set) ---------- */
+.progress{position:absolute;left:0;right:0;bottom:0;height:4px;pointer-events:none}
+.progress span{display:block;height:100%;background:var(--gold);transform-origin:left center;transform:scaleX(var(--p,0))}
+.nav a{transition:background-color .25s ease,color .25s ease,border-color .25s ease}
+@keyframes drift{from{translate:0 0}to{translate:46px 0}}
+@keyframes turn{to{transform:rotate(360deg)}}
+@keyframes band{from{background-position:0 50%}to{background-position:56px 50%}}
+@keyframes popIn{0%{opacity:0;scale:.3;rotate:-25deg}70%{opacity:1;scale:1.08}100%{opacity:1;scale:1;rotate:0deg}}
+@keyframes wiggle{0%,100%{rotate:0deg}25%{rotate:-5deg}75%{rotate:5deg}}
+@keyframes shadowIn{from{text-shadow:0 0 0 var(--gold)}to{text-shadow:4px 4px 0 var(--gold)}}
+.rays{transform-box:view-box;transform-origin:50% 50%}
+html.anim .c1{animation:drift 14s ease-in-out infinite alternate}
+html.anim .c2{animation:drift 19s ease-in-out infinite alternate-reverse}
+html.anim .rays{animation:turn 40s linear infinite}
+html.anim .horn-band,html.anim .closing::before{animation:band 7s linear infinite}
+html.anim h1{animation:shadowIn .7s .25s ease-out both}
+html.anim .sticker-wrap{animation:popIn .75s cubic-bezier(.2,.8,.3,1.2) both}
+html.anim .sw1{animation-delay:.35s}html.anim .sw2{animation-delay:.5s}html.anim .sw3{animation-delay:.65s}
+.sticker-wrap:hover .sticker{animation:wiggle .5s ease}
+/* section heads */
+html.anim .sec-num{opacity:0;rotate:-140deg;scale:.3;transition:opacity .5s ease,rotate .7s cubic-bezier(.2,.8,.3,1.2),scale .7s cubic-bezier(.2,.8,.3,1.2)}
+html.anim .sec-head .kz{opacity:0;translate:-12px 0;transition:opacity .5s .25s ease,translate .5s .25s ease}
+html.anim .sec-head.in .sec-num{opacity:1;rotate:0deg;scale:1}
+html.anim .sec-head.in .kz{opacity:1;translate:0 0}
+/* callouts land like stickers being pressed on */
+html.anim :is(.note,.silent,.gap,.example,.statement){opacity:0;scale:1.06;transition:opacity .5s ease,scale .5s cubic-bezier(.2,.8,.3,1.2)}
+html.anim :is(.note,.silent,.gap,.example,.statement).in{opacity:1;scale:1}
+html.anim .example .stamp{opacity:0}
+html.anim .example.in .stamp{animation:thunk .4s .45s cubic-bezier(.2,.8,.3,1.3) both}
+/* figure 1 */
+html.anim .waffle .cell{opacity:0;scale:.2;transition:opacity .25s ease,scale .35s cubic-bezier(.2,.8,.3,1.5);transition-delay:calc(var(--i,0) * 45ms)}
+html.anim .waffle.in .cell{opacity:1;scale:1}
+html.anim .bar{transform-origin:left center;scale:0 1;transition:scale .9s cubic-bezier(.2,.8,.3,1);transition-delay:calc(var(--i,0) * 180ms)}
+html.anim .bars.in .bar{scale:1 1}
+html.anim .track b{opacity:0;transition:opacity .3s ease 1.1s}
+html.anim .bars.in .track b{opacity:1}
+/* research camps drop onto the page */
+html.anim .camp{opacity:0;translate:0 -36px;transition:opacity .5s ease,translate .6s cubic-bezier(.2,.8,.3,1.2);transition-delay:calc(var(--i,0) * 140ms)}
+html.anim .camps.in .camp{opacity:1;translate:0 0}
+/* four steps appear in order */
+html.anim .steps li{opacity:0;translate:0 28px;transition:opacity .45s ease,translate .5s cubic-bezier(.2,.8,.3,1.2);transition-delay:calc(var(--i,0) * 220ms)}
+html.anim .steps.in li{opacity:1;translate:0 0}
+/* postcards slide in from the sides */
+html.anim .postcard{opacity:0;transition:opacity .5s ease,translate .6s cubic-bezier(.2,.8,.3,1)}
+html.anim .postcard:first-child{translate:-40px 0}html.anim .postcard:last-child{translate:40px 0}
+html.anim .postcard.in{opacity:1;translate:0 0}
+/* receipt prints, then gets stamped */
+html.anim .receipt{clip-path:inset(0 -30px 100% -30px);transition:clip-path 1.1s steps(14,end)}
+html.anim .receipt.in{clip-path:inset(-30px -30px -30px -30px)}
+html.anim .receipt .stamp{opacity:0}
+html.anim .receipt.in .stamp{animation:thunk .4s cubic-bezier(.2,.8,.3,1.3) both;animation-delay:calc(1.15s + var(--i,0) * .18s)}
+/* claims slide in; their stamps already thunk */
+html.anim .claim{opacity:0;translate:-28px 0;transition:opacity .5s ease,translate .55s cubic-bezier(.2,.8,.3,1)}
+html.anim .claim.in{opacity:1;translate:0 0}
+/* verdict */
+html.anim .conditions li{opacity:0;translate:0 14px;transition:opacity .4s ease,translate .45s ease;transition-delay:calc(var(--i,0) * 160ms)}
+html.anim .conditions.in li{opacity:1;translate:0 0}
+html.anim .matrix .dot{scale:0;transition:scale .4s cubic-bezier(.2,.8,.3,1.6);transition-delay:calc(.2s + var(--i,0) * 140ms)}
+html.anim .matrix.in .dot{scale:1}
+html.anim .closing p{opacity:0;translate:0 18px;transition:opacity .8s ease .2s,translate .8s ease .2s}
+html.anim .closing.in p{opacity:1;translate:0 0}
+@media print{html.anim *{opacity:1!important;translate:none!important;scale:none!important;clip-path:none!important;animation:none!important}}
+@media print{.stamp.pending{opacity:1}.nav{display:none}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="horn-band" aria-hidden="true"></div>
+  <div class="cloud c1" aria-hidden="true"></div>
+  <div class="cloud c2" aria-hidden="true"></div>
+  <svg class="sun" viewBox="0 0 120 120" aria-hidden="true"><g class="rays" stroke="#F5B800" stroke-width="5" stroke-linecap="round"><path d="M60 6v14M60 100v14M6 60h14M100 60h14M22 22l10 10M88 88l10 10M98 22 88 32M32 88 22 98"/></g><circle cx="60" cy="60" r="27" fill="#F5B800"/><path d="M50 58c2 3 4 3 6 0M64 58c2 3 4 3 6 0M52 70c5 5 11 5 16 0" fill="none" stroke="#0B3550" stroke-width="3" stroke-linecap="round"/></svg>
+  <div class="hero-inner">
+    <div>
+      <p class="hero-kz" lang="kk">Не жалған екенін кім шешеді?</p>
+      <h1>Who decides what’s false?</h1>
+      <p class="dek">Disinformation in Kazakh and Russian, a state that prosecutes “false information”, and an AI tool built for independent fact-checkers.</p>
+      <p class="byline">Akerke Mukhtarkyzy<br>PLS 419 final project, Nazarbayev University, 2026</p>
+    </div>
+    <div class="stickers">
+      <div class="sticker-wrap sw1"><div class="sticker s-gold"><b>52</b><span>people punished for “false information” in 2025, as of mid‑September</span><small>24.kz, 2025</small></div></div>
+      <div class="sticker-wrap sw2"><div class="sticker s-white"><b>~1,200</b><span>checks a year by Factcheck.kz</span><small>MediaNet, n.d.</small></div></div>
+      <div class="sticker-wrap sw3"><div class="sticker s-sky"><b>15.7M</b><span>social media users in Kazakhstan</span><small>Kapital.kz, 2025</small></div></div>
+    </div>
+  </div>
+  <div class="scallop" aria-hidden="true" style="background-color:var(--field)"></div>
+</header>
+
+<nav class="nav" aria-label="Sections">
+  <div class="progress" aria-hidden="true"><span></span></div>
+  <ul>
+    <li><a href="#problem">1 The problem</a></li>
+    <li><a href="#data">2 Background &amp; data</a></li>
+    <li><a href="#research">3 Research</a></li>
+    <li><a href="#solution">4 Solution &amp; the bill</a></li>
+    <li><a href="#verdict">Verdict</a></li>
+    <li><a href="#ai">AI statement</a></li>
+    <li><a href="#sources">References</a></li>
+  </ul>
+</nav>
+
+<main class="page">
+
+<!-- ================= SECTION 1 ================= -->
+<section id="problem" class="prose">
+  <div class="sec-head">
+    <div class="sec-num" aria-hidden="true">1</div>
+    <div><p class="kz" lang="kk">Мәселе</p><h2>The Problem</h2></div>
+  </div>
+
+  <p>According to the Ministry of Internal Affairs, by mid-September 2025, 52 people in Kazakhstan had been found responsible that year for spreading “false information”: one person under the Criminal Code and 51 people under the Administrative Code <span class="cite">(24.kz, 2025)</span>. Factcheck.kz, the country’s first professional fact-checker, publishes about 1,200 checks a year in Kazakh and Russian, according to MediaNet, which runs it <span class="cite">(MediaNet, n.d.)</span>. Kazakhstan does not just have a “fake news” problem, it has a verification gap: the definition of what is false is increasingly being defined by the government.</p>
+
+  <p>News has moved to platforms faster than checking has. In a 2026 phone survey of 1,100 people, 55.9% named social networks as their main news source, led by Instagram (58.0%) and TikTok (39.1%) <span class="cite">(Demoscope, 2026)</span>. Most respondents do not trust the sources of the news they consume on social media pages (62.9%) and bloggers (66.1%), with state media being considered the most trusted source of information (57.4%). There is a second digital divide based on language, with 76.5% of people now consuming news at least partially in Kazakh <span class="cite">(Demoscope, 2026)</span>. Among Russian speakers, views shifted pro-Russian after February 2022 as their use of Russian online news grew <span class="cite">(Tkachenko et al., 2025)</span>.</p>
+
+  <p>There is also a regional divide, with the percentage of people who have Kazakh as their main home language ranging from 12% in Kostanay to 89% in Mangystau <span class="cite">(Central Asia Barometer, 2023)</span>. In both languages, false information circulates on a small number of platforms, with the threat of legal action causing the most sensitive claims to migrate to private WhatsApp and Telegram groups where it is more challenging to verify <span class="cite">(Filipov &amp; Sulaimonova, 2026)</span>.</p>
+
+  <p>Four changes are widening the gap. In 2022, 77% of Demoscope respondents chose to answer in Russian; in 2026, 65.8% answered in Kazakh, a rough sign that the audience is moving toward Kazakh <span class="cite">(NewTimes.kz, 2022; Demoscope, 2026)</span>. 2023 saw the introduction of the administrative “false information” offence in Kazakhstan and August 2025 saw the opening of the Center for Combating Disinformation by the government <span class="cite">(Global Voices, 2024; Kazinform, 2025)</span>. Kazakhstan’s ranking in the RSF press freedom index dropped from 141 in 2025 to 149 in 2026 <span class="cite">(Orda.kz, 2026)</span>. Automated tools developed for English do not work on Kazakh news: an English-trained model tested on machine-translated Kazakh news achieved only an F1 score of 0.40 <span class="cite">(Telman et al., 2026)</span>.</p>
+
+  <aside class="note">
+    <p style="margin:0"><strong>The social-science question.</strong> When the state both prosecutes “false information” and runs its own fact-checking centre, who gets to decide what is false in Kazakhstan, and which language communities are left without independent verification?</p>
+  </aside>
+
+  <p>The problem is not a shortage of technology. It sits in people, who rely on sources they distrust; in institutions, since independent fact-checking is “professionally recognized but institutionally fragile” <span class="cite">(Filipov &amp; Sulaimonova, 2026)</span>; and in power, because the authority to label a claim false is also the authority to punish it. It is hurting the regional Kazakh language audiences the most because although their portion of the information landscape is increasing, they lack the resources to fight misinformation the most. Journalists, who face criminal charges under Article 274 <span class="cite">(CPJ, 2026)</span>, carry the legal risk.</p>
+
+  <p class="scope">Scope: false and misleading claims on social platforms in Kazakh and Russian, 2022–2026.</p>
+</section>
+
+<div class="horn-rule" aria-hidden="true"></div>
+
+<!-- ================= SECTION 2 ================= -->
+<section id="data">
+  <div class="prose">
+    <div class="sec-head">
+      <div class="sec-num alt" aria-hidden="true">2</div>
+      <div><p class="kz" lang="kk">Деректер</p><h2>Background &amp; Data</h2></div>
+    </div>
+    <p>Kazakhstan measures who is online and whom it punishes, but not how much false information circulates. Table 1 maps who measures what.</p>
+  </div>
+
+  <div class="tbl-wrap wide">
+    <table>
+      <caption>Table 1. Who measures what</caption>
+      <thead><tr><th scope="col">Source</th><th scope="col">What it measures</th><th scope="col">What it shows</th><th scope="col">What it cannot tell us</th></tr></thead>
+      <tbody>
+        <tr><td>Bureau of National Statistics; DataReportal</td><td>Internet access</td><td>92.9% of people online and 15.7 million social media users at the start of 2025 (Kapital.kz, 2025)</td><td>What people read, or whether it is true. BNS counts only whether people aged 6–74 use the internet (BNS, n.d.)</td></tr>
+        <tr><td>Ministry of Internal Affairs; Prosecutor General</td><td>Cases under Art. 274 (criminal) and Art. 456-2 (administrative)</td><td>How often the state investigates and punishes (Figure 1)</td><td>Whether the punished claims were actually false</td></tr>
+        <tr><td>Surveys: Demoscope (2026); Internews &amp; M-Vector (2024)</td><td>News sources, language, trust</td><td>Where people get news and whom they believe</td><td>Exposure to specific false claims</td></tr>
+        <tr><td>RSF; Freedom House</td><td>Expert scores of press and internet freedom</td><td>149th of 180 (Orda.kz, 2026); 37/100, “Not Free” (Freedom House, 2025)</td><td>Counts of anything; these are expert judgements</td></tr>
+        <tr><td>Factcheck.kz; the state Center</td><td>Claims each chose to check</td><td>About 1,200 checks a year (MediaNet, n.d.)</td><td>Everything they did not check</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <h3>The state counts what it punishes</h3>
+    <p>Enforcement figures are the most detailed official figures. In January–April 2023, 29 criminal investigations were registered for Article 274. One case made it to court, eight were dismissed as no crime was committed, eight were suspended due to the absence of suspects, and twelve were pending, according to a letter from the Prosecutor General to the Mazhilis deputies <span class="cite">(Bizmedia, 2023)</span>. Three people were imprisoned under this article as of October 2023 <span class="cite">(Tengrinews, 2023)</span>. The same pattern holds for 2025. 34 criminal cases were opened in January–May <span class="cite">(Inbusiness.kz, 2025)</span>. In the first eight months of 2025, only one person was held liable under Article 274; by mid-September, 51 had been punished under the administrative Article 456-2. Of the 51, 48 were fined and three were arrested <span class="cite">(24.kz, 2025)</span>.</p>
+  </div>
+
+  <figure class="wide" aria-labelledby="fig1-title">
+    <div class="fig">
+      <p class="fig-title" id="fig1-title">Figure 1. Few cases reach court; most punishment is administrative</p>
+      <div class="panels">
+        <div class="panel">
+          <h5>A. Criminal investigations, Jan–Apr 2023</h5>
+          <p class="sub">29 registered under Article 274, one square each</p>
+          <div class="waffle" role="img" aria-label="29 investigations: 1 sent to court, 8 dropped, 8 suspended, 12 still open">
+            <span class="cell k-court" data-tip="Sent to court: 1 of 29"></span>
+            <span class="cell k-drop" data-tip="Dropped, no crime: 8 of 29"></span><span class="cell k-drop" data-tip="Dropped, no crime: 8 of 29"></span><span class="cell k-drop" data-tip="Dropped, no crime: 8 of 29"></span><span class="cell k-drop" data-tip="Dropped, no crime: 8 of 29"></span><span class="cell k-drop" data-tip="Dropped, no crime: 8 of 29"></span><span class="cell k-drop" data-tip="Dropped, no crime: 8 of 29"></span><span class="cell k-drop" data-tip="Dropped, no crime: 8 of 29"></span><span class="cell k-drop" data-tip="Dropped, no crime: 8 of 29"></span>
+            <span class="cell k-susp" data-tip="Suspended, no suspect found: 8 of 29"></span><span class="cell k-susp" data-tip="Suspended, no suspect found: 8 of 29"></span><span class="cell k-susp" data-tip="Suspended, no suspect found: 8 of 29"></span><span class="cell k-susp" data-tip="Suspended, no suspect found: 8 of 29"></span><span class="cell k-susp" data-tip="Suspended, no suspect found: 8 of 29"></span><span class="cell k-susp" data-tip="Suspended, no suspect found: 8 of 29"></span><span class="cell k-susp" data-tip="Suspended, no suspect found: 8 of 29"></span><span class="cell k-susp" data-tip="Suspended, no suspect found: 8 of 29"></span>
+            <span class="cell k-open" data-tip="Still open: 12 of 29"></span><span class="cell k-open" data-tip="Still open: 12 of 29"></span><span class="cell k-open" data-tip="Still open: 12 of 29"></span><span class="cell k-open" data-tip="Still open: 12 of 29"></span><span class="cell k-open" data-tip="Still open: 12 of 29"></span><span class="cell k-open" data-tip="Still open: 12 of 29"></span><span class="cell k-open" data-tip="Still open: 12 of 29"></span><span class="cell k-open" data-tip="Still open: 12 of 29"></span><span class="cell k-open" data-tip="Still open: 12 of 29"></span><span class="cell k-open" data-tip="Still open: 12 of 29"></span><span class="cell k-open" data-tip="Still open: 12 of 29"></span><span class="cell k-open" data-tip="Still open: 12 of 29"></span>
+          </div>
+          <ul class="legend">
+            <li><i class="k-court"></i>1 sent to court</li>
+            <li><i class="k-drop"></i>8 dropped: no crime</li>
+            <li><i class="k-susp"></i>8 suspended: no suspect found</li>
+            <li><i class="k-open"></i>12 still open</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h5>B. 2025, three different periods</h5>
+          <p class="sub">People and cases under each “false information” article</p>
+          <ul class="legend row">
+            <li><i class="b-crim"></i>Criminal route (Art. 274)</li>
+            <li><i class="b-adm"></i>Administrative route (Art. 456-2)</li>
+          </ul>
+          <div class="bars">
+            <div><div class="bar-lab">Criminal cases opened<span>January–May 2025</span></div>
+              <div class="track"><div class="bar b-crim" style="--v:34" data-tip="34 criminal cases opened, Jan–May 2025"></div><b>34</b></div></div>
+            <div><div class="bar-lab">People held liable, criminal<span>January–August 2025</span></div>
+              <div class="track"><div class="bar b-crim" style="--v:1" data-tip="1 person held criminally liable, Jan–Aug 2025"></div><b>1</b></div></div>
+            <div><div class="bar-lab">People held liable, administrative<span>2025, to mid-September: 48 fined, 3 arrested</span></div>
+              <div class="track"><div class="bar b-adm" style="--v:51" data-tip="51 people held administratively liable in 2025, to mid-September"></div><b>51</b></div></div>
+          </div>
+        </div>
+      </div>
+      <figcaption>Each bar in Panel B covers a different period, so compare them with care. Sources: Bizmedia, 2023; Inbusiness.kz, 2025; 24.kz, 2025.</figcaption>
+      <details>
+        <summary>Show the numbers behind Figure 1</summary>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th scope="col">Panel</th><th scope="col">Bar</th><th scope="col" class="num">Count</th><th scope="col">Period</th><th scope="col">Source</th></tr></thead>
+            <tbody>
+              <tr><td>A</td><td>Investigations registered</td><td class="num">29</td><td>Jan–Apr 2023</td><td>Bizmedia, 2023</td></tr>
+              <tr><td>A</td><td>Sent to court</td><td class="num">1</td><td>Jan–Apr 2023</td><td>Bizmedia, 2023</td></tr>
+              <tr><td>A</td><td>Dropped: no crime</td><td class="num">8</td><td>Jan–Apr 2023</td><td>Bizmedia, 2023</td></tr>
+              <tr><td>A</td><td>Suspended: no suspect found</td><td class="num">8</td><td>Jan–Apr 2023</td><td>Bizmedia, 2023</td></tr>
+              <tr><td>A</td><td>Still open</td><td class="num">12</td><td>Jan–Apr 2023</td><td>Bizmedia, 2023</td></tr>
+              <tr><td>B</td><td>Criminal cases opened (Art. 274)</td><td class="num">34</td><td>Jan–May 2025</td><td>Inbusiness.kz, 2025</td></tr>
+              <tr><td>B</td><td>Held liable, criminal (Art. 274)</td><td class="num">1</td><td>Jan–Aug 2025</td><td>24.kz, 2025</td></tr>
+              <tr><td>B</td><td>Held liable, administrative (Art. 456-2)</td><td class="num">51</td><td>2025, to mid-Sep</td><td>24.kz, 2025</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </div>
+  </figure>
+
+  <div class="prose">
+    <p>The figure shows two things. Criminal cases rarely reach court, so the investigation itself becomes the pressure. And most punishment now runs through the administrative route: fines instead of criminal trials.</p>
+
+    <h3>What the surveys show</h3>
+    <p>Surveys reveal a gap between use and trust. 55.9% of respondents get their news mainly from social networks, but 62.9% do not trust social media pages and groups and 66.1% do not trust bloggers, while 57.4% trust state media <span class="cite">(Demoscope, 2026)</span>. Surveys in 2023 indicate 38% followed social media in Russian, 18% in Kazakh, and 27% in both, while in 2026 45.4% consumed information mainly in Kazakh and only 21.1% in Russian alone <span class="cite">(Demoscope, 2026; Internews &amp; M-Vector, 2024)</span>. The two used different methods (face-to-face vs phone) and different questions (per channel vs overall), so they cannot be read as a trend. Both, however, show a large bilingual middle.</p>
+
+    <aside class="silent" aria-labelledby="silent-h">
+      <h4 id="silent-h"><svg width="30" height="26" viewBox="0 0 30 26" aria-hidden="true"><path d="M4 3h22a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H13l-6 5v-5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" fill="none" stroke="#0B3550" stroke-width="2.4" stroke-dasharray="4 3" stroke-linejoin="round"/></svg>Where the data goes silent</h4>
+      <ul>
+        <li><strong>Volume and language.</strong> No one measures how much false content circulates, or what share of it is in Kazakh.</li>
+        <li><strong>Private chats.</strong> Sensitive claims move into WhatsApp and Telegram groups that neither monitors nor statistics can see <span class="cite">(Filipov &amp; Sulaimonova, 2026)</span>, and platform data is not public.</li>
+        <li><strong>Outcomes.</strong> Of the 29 investigations in 2023, 20 were suspended or still open; we found no public record of how they ended.</li>
+        <li><strong>Truth.</strong> Prosecution counts cannot separate real disinformation from criticism the state dislikes.</li>
+        <li><strong>People outside the samples.</strong> The 2023 survey covered ages 14–65, so older people are missing.</li>
+      </ul>
+    </aside>
+
+    <h3>How far can the numbers be trusted?</h3>
+    <p>Enforcement numbers are official, but we receive them second-hand, through news reports about letters and briefings, and they are for different times and stages. One report mentions “about 40” in the lead paragraph and 34 in the main text <span class="cite">(Inbusiness.kz, 2025)</span>. Demoscope’s survey is large and comprehensive for all regions, but it is part of a project by MediaNet, which also operates the fact-checking website Factcheck.kz <span class="cite">(Lada.kz, 2026)</span>. The indices are expert opinions, which are helpful for direction, but not counting. The data is sufficient to inform about how the state enforces against “false information”, but not to determine how big a problem it is. The asymmetry of these things is the finding: the state counts what it punishes, not what is false.</p>
+  </div>
+</section>
+
+<div class="horn-rule" aria-hidden="true"></div>
+
+<!-- ================= SECTION 3 ================= -->
+<section id="research">
+  <div class="prose">
+    <div class="sec-head">
+      <div class="sec-num" aria-hidden="true">3</div>
+      <div><p class="kz" lang="kk">Зерттеулер</p><h2>Current State of Research</h2></div>
+    </div>
+    <p>Research on disinformation in Kazakhstan comes from four camps that rarely cite each other. Read together, they reveal a contradiction that none of them sees alone.</p>
+  </div>
+
+  <div class="camps wide">
+    <article class="camp">
+      <h4>Who is exposed</h4><p class="disc">political behaviour</p>
+      <p>Tkachenko et al. (2025) combine six waves of the Central Asia Barometer, Yandex search data and an original 2023 online survey. They find that language habits steer media choice: Russian speakers moved toward pro-Russian views as their use of Russian online news grew, and Russian propaganda raises justification for evading sanctions. The design is careful, but the paper is an unreviewed preprint, and it studies foreign propaganda rather than domestic false claims or Kazakh-language content.</p>
+    </article>
+    <article class="camp">
+      <h4>How fact-checking works</h4><p class="disc">journalism studies</p>
+      <p>Filipov and Sulaimonova (2026) review 54 sources from 2017 to 2025. Legal risk pushes sensitive claims into private messaging, the Kazakh- and Russian-language spheres overlap without merging, and corrections reach far narrower audiences than the original claims. Tolegen et al. (2025) are more descriptive, combining bibliometrics with a 100-person poll, and advise readers to trust official sources. That advice assumes what is contested in Kazakhstan: that official sources are a neutral benchmark.</p>
+    </article>
+    <article class="camp">
+      <h4>Who decides what is false</h4><p class="disc">comparative politics and law</p>
+      <p>Globally, researchers treat “fake news” laws as tools of control. Lim and Bradshaw (2023) count 14 such laws worldwide in 2011–2015 and 91 in 2016–2022. Teo (2021), interviewing 17 journalists, academics and activists in Singapore, shows how such a law legitimises the state as the “ultimate fact-checker”. Dragomir (2025) compares countries and finds that governments often spread disinformation while writing laws against it. Applied to Kazakhstan, this literature predicts what Section 2 found: enforcement aimed at punishment rather than correction.</p>
+    </article>
+    <article class="camp">
+      <h4>Can machines detect it</h4><p class="disc">computational linguistics</p>
+      <p>A small research group has built the first Kazakh detection tools. Telman et al. (2026) show that English models fail on translated Kazakh (F1 0.40), while a model trained on 1,106 Kazakh texts scored F1 0.97, a result the authors call preliminary. Sambetbayeva et al. (2025) design an annotation scheme for over 5,000 Kazakh–Russian news texts, and Lamasheva et al. (2026) release KazFakeCorpus, with 4,276 texts. But the labels define truth by authority. Telman et al. take “true” texts only from portals registered with the Ministry of Information and Social Development, and KazFakeCorpus builds its real class from government news and its fake class with GPT-5.</p>
+    </article>
+  </div>
+
+  <div class="prose">
+    <p><strong>What is known, contested and missing.</strong> It is known that language channels exposure and that “fake news” laws chill journalism. It is contested which language community is more at risk, and whether lab scores survive real social-media posts. What is missing is a link between the camps: the engineers build the state’s definition of truth into their training data, which is exactly what the political scientists warn against.</p>
+    <aside class="gap">
+      <p><strong>The gap.</strong> Researchers ask whether false claims can be detected in Kazakh, and who has the power to call them false. No one has asked how a Kazakh-language verification tool should be governed so that it strengthens independent checking instead of state labelling. That is the question this project’s solution takes up.</p>
+    </aside>
+  </div>
+</section>
+
+<div class="horn-rule" aria-hidden="true"></div>
+
+<!-- ================= SECTION 4 ================= -->
+<section id="solution">
+  <div class="prose">
+    <div class="sec-head">
+      <div class="sec-num alt" aria-hidden="true">4</div>
+      <div><p class="kz" lang="kk">Шешім және оның құны</p><h2>The AI-Assisted Solution, and What It Would Cost</h2></div>
+    </div>
+
+    <h3 style="margin-top:0">The solution: a claim radar for independent fact-checkers</h3>
+    <p>We propose an AI tool that helps Kazakhstan’s independent fact-checkers find and match false claims in Kazakh and Russian. It never labels content, scores people or removes anything. People decide what is false.</p>
+    <p>Why AI and not simply more people? Factcheck.kz publishes about 1,200 checks a year, while 15.7 million people in Kazakhstan use social media <span class="cite">(MediaNet, n.d.; Kapital.kz, 2025)</span>. No team can read that much. Software can, as Full Fact’s jump from 100 to 100,000 claims a day shows (below).</p>
+    <p class="lead-in">What it does, in four steps:</p>
+  </div>
+
+  <ol class="steps wide">
+    <li>
+      <svg width="46" height="40" viewBox="0 0 46 40" aria-hidden="true"><path d="M23 3v15M17 12l6 6 6-6" fill="none" stroke="#0B3550" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 22h11l3 6h10l3-6h11v12a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" fill="#FFF3C7" stroke="#0B3550" stroke-width="2.6" stroke-linejoin="round"/></svg>
+      <strong>Collect.</strong> It reads public Telegram channels, news sites and video transcripts in both languages, plus claims that users forward to a tipline. The tipline reaches private WhatsApp and Telegram chats that public monitoring cannot see.
+    </li>
+    <li>
+      <svg width="46" height="40" viewBox="0 0 46 40" aria-hidden="true"><rect x="3" y="4" width="24" height="17" rx="5" fill="#BFE7F1" stroke="#0B3550" stroke-width="2.6"/><rect x="19" y="17" width="24" height="17" rx="5" fill="#FFF3C7" stroke="#0B3550" stroke-width="2.6"/><path d="M26 24h10M26 28h10" stroke="#0B3550" stroke-width="2.6" stroke-linecap="round"/></svg>
+      <strong>Match.</strong> It groups repeated claims and links new posts to fact-checks already published, so each claim is checked once, not many times.
+    </li>
+    <li>
+      <svg width="46" height="40" viewBox="0 0 46 40" aria-hidden="true"><rect x="4" y="5" width="36" height="7" rx="3.5" fill="#F5B800" stroke="#0B3550" stroke-width="2.4"/><rect x="4" y="17" width="25" height="7" rx="3.5" fill="#BFE7F1" stroke="#0B3550" stroke-width="2.4"/><rect x="4" y="29" width="14" height="7" rx="3.5" fill="#fff" stroke="#0B3550" stroke-width="2.4"/></svg>
+      <strong>Rank.</strong> It sorts claims by how widely they spread, so checkers start with the most-shared.
+    </li>
+    <li>
+      <svg width="46" height="40" viewBox="0 0 46 40" aria-hidden="true"><circle cx="18" cy="17" r="13" fill="#fff" stroke="#0B3550" stroke-width="2.6"/><path d="M12 17l4 4 8-8" fill="none" stroke="#C8102E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M28 27l10 10" stroke="#0B3550" stroke-width="4" stroke-linecap="round"/></svg>
+      <strong>Hand over.</strong> A fact-checker decides what is false, writes the check and posts it back on Instagram, WhatsApp and Telegram, where regional audiences already read news.
+    </li>
+  </ol>
+
+  <div class="prose">
+    <aside class="example">
+      <span class="stamp st-ink" aria-hidden="true">Illustrative</span>
+      <p><strong>An example (illustrative, not a real case).</strong> A post claiming that a regional hospital has run out of insulin spreads in Kazakh. A reader forwards it to the tipline. The radar finds near-identical copies on several public Telegram channels, sees no existing check, and puts the claim at the top of the queue. A fact-checker calls the hospital and the regional health department and publishes the answer in both languages. From then on, the radar links every new copy to that check.</p>
+    </aside>
+
+    <dl class="facts">
+      <div><dt>Built on</dt><dd>KazLLM, the open-source Kazakh model that Nazarbayev University’s ISSAI released in 2024, in its smaller 8-billion-parameter version <span class="cite">(ISSAI, 2024)</span>. It can run on servers inside Kazakhstan. Why not a global chatbot such as ChatGPT? Messages would leave the country, which the data-localisation rule restricts, and English-trained tools fail in Kazakh <span class="cite">(Telman et al., 2026)</span>.</dd></div>
+      <div><dt>Run by</dt><dd>A consortium of independent fact-checkers, such as Factcheck.kz, and a university research lab. Not the state’s Center for Combating Disinformation, because a state that punishes “false information” cannot also be the neutral judge of it.</dd></div>
+      <div><dt>Reaching</dt><dd>Kazakh-language audiences in the regions first, because their share of the information space is growing while the tools to check it are weakest.</dd></div>
+    </dl>
+
+    <h3>Two case studies</h3>
+  </div>
+
+  <div class="cards2 wide">
+    <article class="postcard">
+      <span class="postmark" aria-hidden="true">UK</span>
+      <h4>Full Fact AI (United Kingdom)</h4>
+      <p>Full Fact built tools that monitor media, spot repeated claims and transcribe live broadcasts, funded by a $2 million, three-year Google.org grant won in 2019 <span class="cite">(Friedrich Naumann Foundation, 2023)</span>. Detection rose from about 100 claims a day to 100,000 <span class="cite">(Smalley, 2023)</span>, and the tools spread to more than 40 organisations in 30 countries <span class="cite">(Full Fact, n.d.)</span>. In a 2023–2025 pilot with the Arab Fact-Checking Network, more than 25 organisations used them, and 13 of the 15 surveyed said they significantly sped up their work. Then Google funding cuts in 2025 cost the network its access <span class="cite">(Wilkinson, 2026)</span>.</p>
+    </article>
+    <article class="postcard">
+      <span class="postmark" aria-hidden="true">AR</span>
+      <h4>Chequeabot (Argentina)</h4>
+      <p>Chequeado’s bot detects checkable claims, matches repeats and transcribes speeches. Its Spanish tools had to be built mostly from scratch <span class="cite">(Funke, 2018)</span>. Chequeado reports hundreds of hours saved for itself and seven other organisations, with transcription time down 90% <span class="cite">(Sohr &amp; Piccato, 2024)</span>.</p>
+    </article>
+  </div>
+
+  <div class="prose">
+    <p><strong>What transfers, and what doesn’t.</strong> The division of labour transfers: machines find and match, people judge. The setting does not. Both results are self-reported, both come from democracies, and both depended on one large tech funder. A third case is a warning. Georgia’s MythDetector still reviews AI flags by hand because its tool “hasn’t been trained in the Georgian language” <span class="cite">(Kahn, 2024)</span>. Kazakh faces the same problem, which is why the tool must run on a Kazakh model.</p>
+
+    <h3>The bill: we fact-checked our own proposal</h3>
+    <p>The bill covers five costs: environmental, economic, labour, political and governance, and data ethics. For each, we fact-checked the claim a promoter would make, using the verdict scale fact-checkers use.</p>
+    <figure class="receipt" aria-labelledby="bill-title">
+      <p class="receipt-title" id="bill-title">The bill at a glance</p>
+      <ol>
+        <li><a href="#cost-environmental">Environmental</a><span class="stamp st-true">Mostly true</span></li>
+        <li><a href="#cost-economic">Economic</a><span class="stamp st-mis">Misleading</span></li>
+        <li><a href="#cost-labour">Labour</a><span class="stamp st-false">False</span></li>
+        <li><a href="#cost-political">Political and governance</a><span class="stamp st-false">False</span></li>
+        <li><a href="#cost-data-ethics">Data ethics</a><span class="stamp st-mis">Missing context</span></li>
+      </ol>
+      <p class="receipt-total"><span>Total</span><a href="#verdict">a conditional yes</a></p>
+    </figure>
+
+    <article class="claim v-true" id="cost-environmental">
+      <h4><small>Claim 1 <span class="cost">Environmental</span></small>“It barely uses any energy.”</h4>
+      <p class="verdict"><span class="sr">Verdict: </span><span class="stamp st-true">Mostly true</span></p>
+      <p>One server with one H100 graphics card, rated at 350 W maximum <span class="cite">(NVIDIA, n.d.)</span>, draws about 0.7 kW in total if it runs all day. That is roughly 6,100 kWh a year, close to one Kazakhstani’s yearly electricity use of about 5,800 kWh <span class="cite">(our estimate; LowCarbonPower, 2026)</span>. But coal produced 62% of Kazakhstan’s electricity in 2025 <span class="cite">(Ember, 2026)</span>, and sources put the grid at 600–800 g of CO₂ per kWh <span class="cite">(LowCarbonPower, 2026; Inzonex, n.d.)</span>. The server would emit about 4–5 tonnes of CO₂ a year, a quarter to a third of one person’s annual 14.9 tonnes <span class="cite">(Our World in Data, n.d.)</span>. The 70B model would need two to four times the power, so the smaller model is the responsible choice. Water use is indirect, at the power plants; an air-cooled server needs none of its own. The heaviest compute, training KazLLM on eight NVIDIA DGX H100 nodes, has already been spent <span class="cite">(ISSAI, n.d.)</span>.</p>
+    </article>
+
+    <article class="claim v-mis" id="cost-economic">
+      <h4><small>Claim 2 <span class="cost">Economic</span></small>“The AI is free, because KazLLM is open source.”</h4>
+      <p class="verdict"><span class="sr">Verdict: </span><span class="stamp st-mis">Misleading</span></p>
+      <p>The model is free to download, but the public has already paid for its Kazakh training data: the state allocated 3.9 billion tenge to collect it <span class="cite">(Bizmedia, 2024)</span>. The running cost is people. Four full-time staff (an engineer, two annotators and an editor) at the 2025 national average wage of 443,315 tenge a month <span class="cite">(BNS, 2026)</span> cost about 21 million tenge a year before taxes <span class="cite">(our estimate; an engineer would cost more)</span>. Who pays gets leverage: foreign donors, platforms such as Meta, whose programme Factcheck.kz joined in 2024 <span class="cite">(MediaNet, 2024)</span>, or the state. Who profits? Platforms, which hand hard moderation calls to checkers, and Astana Hub, which holds the model. Full Fact shows the danger of one funder: when the money stopped, so did the tools.</p>
+    </article>
+
+    <article class="claim v-false" id="cost-labour">
+      <h4><small>Claim 3 <span class="cost">Labour</span></small>“AI will replace manual fact-checking.”</h4>
+      <p class="verdict"><span class="sr">Verdict: </span><span class="stamp st-false">False</span></p>
+      <p>It moves the work. The people who scroll channels all day lose most of that task; at Chequeado, one person now does a job that once took six <span class="cite">(Sohr &amp; Piccato, 2024)</span>. Verification grows instead, because the tool surfaces more claims than people can check. The tool also depends on hidden labour: annotators who label Kazakh training data (peer-reviewed corpora hold 1,106 to just over 5,000 texts), reviewers who read disturbing content, and engineers who maintain the model. That last job has no owner. ISSAI says it was not asked to develop KazLLM further after handing it to Astana Hub in December 2024 <span class="cite">(ISSAI, 2026)</span>.</p>
+    </article>
+
+    <article class="claim v-false" id="cost-political">
+      <h4><small>Claim 4 <span class="cost">Political and governance</span></small>“A fact-checking tool cannot be used for censorship.”</h4>
+      <p class="verdict"><span class="sr">Verdict: </span><span class="stamp st-false">False</span></p>
+      <p>In Kazakhstan, a “false” label can lead to punishment: 51 people were held liable under the administrative “false information” article in 2025, as of mid-September <span class="cite">(24.kz, 2025)</span>. A list of viral false claims, and of the channels spreading them, is exactly what prosecutors would want.</p>
+      <p>The law makes the risk concrete. Personal data must be stored on servers in Kazakhstan <span class="cite">(GSE, n.d.)</span>, within reach of the authorities. The Law on Artificial Intelligence, in force since 18 January 2026, sorts systems into minimal, medium and high risk and bans AI that creates or spreads prohibited content <span class="cite">(EY, 2025; Tengrinews, 2026)</span>. Whoever decides what is “prohibited” decides what the tool may flag.</p>
+      <p>Control also matters at the model level. Astana Hub received KazLLM under a non-exclusive licence <span class="cite">(ISSAI, 2026)</span>, so the consortium can run its own copy, but no independent body currently maintains the model. Buribayeva et al. (2026) find that Kazakhstan’s AI Law declares responsible-AI principles but leaves audit, contestation and independent oversight weakly specified, while one ministry acts as regulator, infrastructure operator and AI promoter. A tool built inside that structure would inherit its conflict of interest. Roberts et al. (2024) judge governance by its legitimacy: does it help actors coordinate, and do its decisions follow democratic procedures? A claim radar run by a ministry would fail the second test.</p>
+    </article>
+
+    <article class="claim v-mis" id="cost-data-ethics">
+      <h4><small>Claim 5 <span class="cost">Data ethics</span></small>“It only uses public data.”</h4>
+      <p class="verdict"><span class="sr">Verdict: </span><span class="stamp st-mis">Missing context</span></p>
+      <p>Public channels are public, but their authors never agreed to be monitored, and tipline messages carry phone numbers and screenshots of private chats. A false flag could expose a person to criminal risk, and a leaked tipline log would show who forwarded which rumours, in a country that prosecutes spreading “false information”. And a model that learns from official sources inherits the “official = true” bias that Section 3 found in existing Kazakh corpora. Buribayeva et al. (2026) warn that sovereign models such as KazLLM, trained largely on national websites and official documents, may quietly privilege official interpretations. Our tool runs on that model, so honest labels are not optional.</p>
+    </article>
+  </div>
+</section>
+
+<div class="horn-rule" aria-hidden="true"></div>
+
+<!-- ================= VERDICT ================= -->
+<section id="verdict" class="prose">
+  <div class="sec-head">
+    <div class="sec-num" aria-hidden="true">✓</div>
+    <div><p class="kz" lang="kk">Қорытынды</p><h2>Verdict: a conditional yes</h2></div>
+  </div>
+  <p>Knowing these costs, Kazakhstan should build this tool only under five conditions:</p>
+  <ol class="conditions">
+    <li><strong>Independent control.</strong> Independent fact-checkers, a university and representatives of regional Kazakh-language audiences run it; no state body holds the keys or the data.</li>
+    <li><strong>People decide.</strong> The tool never labels or removes anything, and its outputs are never shared with law enforcement.</li>
+    <li><strong>Data minimisation.</strong> Tipline senders stay anonymous, private messages are deleted after checking, and the tool stores claims, not names.</li>
+    <li><strong>Honest labels.</strong> Training data comes from independent fact-checks with a published labelling method, not from official sources alone.</li>
+    <li><strong>Secure funding.</strong> Several years of funding from more than one source are in place before launch.</li>
+  </ol>
+  <p>Each condition answers a line of the bill (Figure 2). Claims 1 and 3 do not block the project: the energy cost is modest, and the shift in labour can be planned.</p>
+
+  <div class="tbl-wrap">
+    <table class="matrix">
+      <caption>Figure 2. Which condition answers which claim</caption>
+      <thead><tr>
+        <th scope="col">Condition</th>
+        <th scope="col"><i style="background:var(--sky)"></i>Claim 1<span>Environmental</span></th>
+        <th scope="col"><i style="background:var(--gold-data)"></i>Claim 2<span>Economic</span></th>
+        <th scope="col"><i style="background:var(--red)"></i>Claim 3<span>Labour</span></th>
+        <th scope="col"><i style="background:var(--red)"></i>Claim 4<span>Political &amp; governance</span></th>
+        <th scope="col"><i style="background:var(--gold-data)"></i>Claim 5<span>Data ethics</span></th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Independent control</td><td></td><td></td><td></td><td><span class="dot" role="img" aria-label="answers"></span></td><td></td></tr>
+        <tr><td>People decide</td><td></td><td></td><td></td><td><span class="dot" role="img" aria-label="answers"></span></td><td></td></tr>
+        <tr><td>Data minimisation</td><td></td><td></td><td></td><td><span class="dot" role="img" aria-label="answers"></span></td><td><span class="dot" role="img" aria-label="answers"></span></td></tr>
+        <tr><td>Honest labels</td><td></td><td></td><td></td><td></td><td><span class="dot" role="img" aria-label="answers"></span></td></tr>
+        <tr><td>Secure funding</td><td></td><td><span class="dot" role="img" aria-label="answers"></span></td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>Why a community seat.</strong> Mhlambi (2020) traces AI harms to excluding affected communities and concentrating power, and argues, from the ubuntu idea that a person is a person through other persons, that communities should control the tools used on them. The audiences whose claims get checked belong on the board, not only in the data.</p>
+  <p><strong>How we would know it works.</strong> An independent evaluation, planned before launch, would track three numbers: how long a viral claim takes to get a check, what share of checks appear in Kazakh, and how many reach regional audiences. If the state ever requests the tool’s data, the evaluation should say so publicly.</p>
+  <p>If these conditions hold, Kazakh-language audiences get faster, independent checks where they actually read news. If they cannot be met, the same tool becomes a map of who says what, handed to a state that prosecutes “false information”. Then the honest answer is no.</p>
+
+  <blockquote class="closing"><p>A fact-checking machine is only as independent as the people who can switch it off.</p></blockquote>
+</section>
+
+<div class="horn-rule" aria-hidden="true"></div>
+
+<!-- ================= AI STATEMENT ================= -->
+<section id="ai" class="prose">
+  <div class="sec-head">
+    <div class="sec-num alt" aria-hidden="true" style="font-size:1.4rem">AI</div>
+    <div><p class="kz" lang="kk">ЖИ қолдану</p><h2>AI transparency statement</h2></div>
+  </div>
+  <div class="statement">
+    <p>This project was co-created by Akerke Mukhtarkyzy and Claude (Anthropic). Claude suggested candidate topics, ran the source research, drafted the text, proposed fact-checking our own proposal as the framing for the bill, made the energy and staff-cost estimates (labelled as ours), and built the website and its figures. Akerke chose the topic, shaped the argument, verified each number and statistic, and directed revisions. She opened every link, flagged the ones that were out of access, and made sure that the argument is coherent.</p>
+  </div>
+</section>
+
+<div class="horn-rule" aria-hidden="true"></div>
+
+<!-- ================= REFERENCES ================= -->
+<section id="sources" class="prose">
+  <div class="sec-head">
+    <div class="sec-num" aria-hidden="true" style="font-size:1.3rem">50</div>
+    <div><p class="kz" lang="kk">Дереккөздер</p><h2>References</h2></div>
+  </div>
+  <ol class="refs">
+    <li>24.kz. (2025, September 19). <a href="https://24.kz/ru/news/social/730676-52-kazakhstantsa-poluchili-nakazanie-za-fejki">52 казахстанца получили наказание за фейки</a>.</li>
+    <li>Bizmedia. (2023, May 29). <a href="https://bizmedia.kz/2023-05-29-v-kazahstane-provodyat-rassledovaniya-12-del-o-rasprostranenii-lozhnoj-informaczii/">В Казахстане проводят расследования 12 дел о распространении ложной информации</a>. Reports Prosecutor General’s letter No. 2-01-23-41423 to Mazhilis deputies, 25 May 2023.</li>
+    <li>Bizmedia. (2024, July 16). <a href="https://bizmedia.kz/2024-07-16-na-proekt-sozdaniya-bolshoj-yazykovoj-modeli-kazllm-vydeleno-39-milliarda-tenge/">На проект создания большой языковой модели KazLLM выделено 3,9 миллиарда тенге</a>.</li>
+    <li>Bureau of National Statistics [BNS]. (n.d.). <a href="https://stat.gov.kz/ru/open-data/474300/490148/">Доля пользователей сети Интернет (в возрасте 6–74 лет): определение показателя</a>.</li>
+    <li>Bureau of National Statistics [BNS]. (2026). <a href="https://stat.gov.kz/ru/industries/labor-and-income/stat-wags/publications/509385/">Wage statistics for the Republic of Kazakhstan, 2025</a> [statistical release].</li>
+    <li>Buribayeva, M., Khamzina, Z., &amp; Buribayev, Y. (2026). Potential negative effects of artificial intelligence in Kazakhstan’s public sector: An analysis of hidden risks. <em>Frontiers in Artificial Intelligence</em>, 9, 1781993. <a href="https://doi.org/10.3389/frai.2026.1781993">https://doi.org/10.3389/frai.2026.1781993</a></li>
+    <li>Central Asia Barometer. (2023, December). <a href="https://ca-barometer.org/en/publications/what-language-do-the-kazakhs-speak-at-home">What language do the Kazakhs speak at home?</a></li>
+    <li>Committee to Protect Journalists [CPJ]. (2026, August). <a href="https://cpj.org/2026/08/from-prosecutions-to-bans-and-spurious-copyright-claims-how-kazakhstans-journalists-are-being-silenced/">From prosecutions to bans and spurious copyright claims: how Kazakhstan’s journalists are being silenced</a>.</li>
+    <li>Demoscope. (2026). Survey of 24 February – 6 March 2026, reported in BES.media, 31 March 2026: <a href="https://bes.media/news/sotsseti-stali-glavnim-istochnikom-novostey-dlya-kazahstantsev-opros-6725b0/">Большинство казахстанцев получают информацию на казахском языке, а новости – из соцсетей</a>.</li>
+    <li>Dragomir, M. (2025). Probing the paradox: Are governments fighting or fueling disinformation? <em>Frontiers in Communication</em>, 10, 1429741. <a href="https://doi.org/10.3389/fcomm.2025.1429741">https://doi.org/10.3389/fcomm.2025.1429741</a></li>
+    <li>Ember. (2026, November 3). <a href="https://ember-energy.org/latest-insights/kazakhstan-has-the-wind-to-power-its-demand-growth/">Kazakhstan has the wind to power its demand growth</a> (K. Rangelova).</li>
+    <li>EY. (2025, December 9). <a href="https://www.ey.com/en_kz/technical/tax-alerts/2025/12/law-on-artificial-intelligence-kazakhstan">The Law of the Republic of Kazakhstan “On Artificial Intelligence” has been adopted</a>.</li>
+    <li>Filipov, M., &amp; Sulaimonova, N. (2026). Fact-checking under constraint: Misinformation and verification in Kazakhstan. <em>Rhetoric and Communications</em>, 69. <a href="https://doi.org/10.55206/EVJX8965">https://doi.org/10.55206/EVJX8965</a></li>
+    <li>Freedom House. (2025). <a href="https://www.ecoi.net/de/dokument/2133571.html">Freedom on the Net 2025: Kazakhstan</a> (copy hosted by ecoi.net).</li>
+    <li>Friedrich Naumann Foundation. (2023, June 20). <a href="https://www.freiheit.org/taiwan/full-fact-ai-technology-combating-disinformation">Innovation for Democracy Cafe – Full Fact AI: Technology for combating disinformation</a>.</li>
+    <li>Full Fact. (n.d.). <a href="https://fullfact.org/about/ai/">Full Fact AI</a>.</li>
+    <li>Funke, D. (2018, January 11). <a href="https://www.poynter.org/fact-checking/2018/in-argentina-fact-checkers%C2%92-latest-hire-is-a-bot/">In Argentina, fact-checkers’ latest hire is a bot</a>. Poynter.</li>
+    <li>Global Voices. (2024, June 10). <a href="https://globalvoices.org/2024/06/10/central-asia-press-freedom-scores-get-worse/">Central Asia press freedom scores get worse</a>.</li>
+    <li>GSE. (n.d.). <a href="https://www.gse.kz/en/blog/personal-data-storage-kazakhstan">How to store personal data in Kazakhstan</a>.</li>
+    <li>Inbusiness.kz. (2025, May 23). <a href="https://www.inbusiness.kz/ru/news/chislo-ugolovnyh-del-za-dipfejki-rastet-v-kazahstane">Число уголовных дел за дипфейки растет в Казахстане</a>.</li>
+    <li>Internews &amp; M-Vector. (2024). <a href="https://newreporter.org/wp-content/uploads/2024/04/Sociological-Research-on-Media-Consumption-and-Media-Literacy-in-Central-Asian-Countries-Kazakhstan-Tajikistan-Uzbekistan-2023.pdf">Sociological research on media consumption and media literacy in Central Asian countries (Kazakhstan, Tajikistan, Uzbekistan), 2023</a>.</li>
+    <li>Inzonex. (n.d.). <a href="https://inzonex.co.uk/poweratlas/kazakhstan/">Kazakhstan electricity grid: mix and carbon intensity (2025)</a> (citing Ember and Our World in Data).</li>
+    <li>ISSAI. (2024, December 10). <a href="https://issai.nu.edu.kz/2024/12/10/official-release-of-the-issai-kaz-llm-open-source-model-is-available/">Official release of the ISSAI KAZ-LLM: Open-source model is available</a>.</li>
+    <li>ISSAI. (2026, February 13). <a href="https://issai.nu.edu.kz/2026/02/13/issai-explains-kazllm-why-kazakhstan-built-its-own-large-language-model/">ISSAI explains KazLLM: Why Kazakhstan built its own large language model</a>.</li>
+    <li>ISSAI. (n.d.). <a href="https://issai.nu.edu.kz/kazllm/">KazLLM</a>.</li>
+    <li>Kahn, G. (2024, April 29). <a href="https://reutersinstitute.politics.ox.ac.uk/news/generative-ai-already-helping-fact-checkers-its-proving-less-useful-small-languages-and">Generative AI is already helping fact-checkers. But it’s proving less useful in small languages and outside the West</a>. Reuters Institute.</li>
+    <li>Kapital.kz. (2025). <a href="https://kapital.kz/tehnology/141342/kakimi-socsetyami-i-messendzherami-polzuetsya-molodezh-v-kazahstane.html">Какими соцсетями и мессенджерами пользуется молодежь в Казахстане</a> (citing DataReportal).</li>
+    <li>Kazinform. (2025, August 1). <a href="https://qazinform.com/news/kazakhstan-launches-center-for-combating-disinformation-87c23e">Kazakhstan launches Center for Combating Disinformation</a>.</li>
+    <li>Lada.kz. (2026, March 31). <a href="https://www.lada.kz/kazakhstan-news/151273-na-kakom-iazyke-chitaiut-novosti-kazakhstantsy-rezultaty-oprosa.html">На каком языке читают новости казахстанцы: результаты опроса</a>.</li>
+    <li>Lamasheva, Z., Nekessova, A., Kantureyeva, M., Sambetbayeva, M., Kaldarova, M., &amp; Nazymkhan, A. (2026). KazFakeCorpus: A bilingual corpus with multi-level semantic annotation for fake news detection. <em>Big Data and Cognitive Computing</em>, 10(6), 183. <a href="https://doi.org/10.3390/bdcc10060183">https://doi.org/10.3390/bdcc10060183</a></li>
+    <li>Lim, G., &amp; Bradshaw, S. (2023). <a href="https://cima.ned.org/publication/chilling-legislation/"><em>Chilling legislation: Tracking the impact of “fake news” laws on press freedom internationally</em></a>. Center for International Media Assistance.</li>
+    <li>LowCarbonPower. (2026). <a href="https://lowcarbonpower.org/region/Kazakhstan">Electricity in Kazakhstan in 2025/2026</a>.</li>
+    <li>MediaNet. (n.d.). <a href="https://medianet.ngo/en?p=4842">Factcheck.kz project page</a>.</li>
+    <li>MediaNet. (2024, September 16). <a href="https://medianet.ngo/en/archives/5545">[Announcement of Factcheck.kz’s entry into Meta’s third-party fact-checking programme]</a>.</li>
+    <li>Mhlambi, S. (2020). <em>From rationality to relationality: Ubuntu as an ethical and human rights framework for artificial intelligence governance</em> (Carr Center Discussion Paper 2020-009). Carr Center for Human Rights Policy, Harvard Kennedy School.</li>
+    <li>NewTimes.kz. (2022). <a href="https://newtimes.kz/obshchestvo/147648-opros-znachitelnaya-chast-kazahstancev-podverzhena-vliyaniyu-rossijskoj-propagandy">Опрос: Значительная часть казахстанцев подвержена влиянию российской пропаганды</a>.</li>
+    <li>NVIDIA. (n.d.). <a href="https://openzeka.com/wp-content/uploads/2023/12/PB-11133-001_v01.pdf">NVIDIA H100 PCIe GPU product brief (PB-11133-001)</a>.</li>
+    <li>Orda.kz. (2026). <a href="https://en.orda.kz/149th-place-and-five-detained-journalists-what-is-happening-to-press-freedom-in-kazakhstan-10404/">149th place and five detained journalists: what is happening to press freedom in Kazakhstan</a>.</li>
+    <li>Our World in Data. (n.d.). <a href="https://ourworldindata.org/profile/co2/kazakhstan">Kazakhstan: CO₂ country profile</a>.</li>
+    <li>Roberts, H., Hine, E., Taddeo, M., &amp; Floridi, L. (2024). Global AI governance: Barriers and pathways forward. <em>International Affairs</em>, 100(3), 1275–1286. <a href="https://doi.org/10.1093/ia/iiae073">https://doi.org/10.1093/ia/iiae073</a></li>
+    <li>Sambetbayeva, M., Nekessova, A., Yerimbetova, A., Bayangali, A., Kaldarova, M., Telman, D., &amp; Smailov, N. (2025). <a href="https://www.mdpi.com/2504-2289/9/8/215">A multi-level annotation model for fake news detection: Implementing Kazakh-Russian corpus via Label Studio</a>. <em>Big Data and Cognitive Computing</em>, 9(8), 215.</li>
+    <li>Smalley, S. (2023, February 24). <a href="https://poynter.org/?p=1048828">How Nigeria’s fact-checkers are using AI to counter election misinformation</a>. Poynter.</li>
+    <li>Sohr, O., &amp; Piccato, F. (2024, March 28). <a href="https://poynter.org/?p=1100696">How fact-checkers can use AI wisely</a>. Poynter.</li>
+    <li>Telman, D., Yerimbetova, A., Sambetbayeva, M., Daiyrbayeva, E., Bazarkulova, A., Turganbayev, A., &amp; Bolatov, B. (2026). Cross-lingual and multilingual approaches to fake news detection in the Kazakh language. <em>Procedia Computer Science</em>, 275, 708–715. <a href="https://doi.org/10.1016/j.procs.2026.01.082">https://doi.org/10.1016/j.procs.2026.01.082</a></li>
+    <li>Tengrinews. (2023, October 26). <a href="https://tengrinews.kz/kazakhstan_news/skolko-kazahstantsev-osudili-za-feyki-v-seti-512693/">Сколько казахстанцев осудили за фейки в сети</a>.</li>
+    <li>Tengrinews. (2026, January 19). <a href="https://en.tengrinews.kz/kazakhstan_news/new-law-comes-into-force-in-kazakhstan-270729">New law comes into force in Kazakhstan</a>.</li>
+    <li>Teo, K. X. (2021). <a href="https://ijoc.org/index.php/ijoc/article/download/17910/3593">Civil society responses to Singapore’s online “fake news” law</a>. <em>International Journal of Communication</em>, 15, 4795–4815.</li>
+    <li>Tkachenko, A., Karpa, D., Rochlitz, M., Tatkeyeva, M., &amp; Sagyndykova, G. (2025). <em>Language affinity, Russian media and sanctions evasion</em> [SSRN preprint]. <a href="https://ssrn.com/abstract=5604802">https://ssrn.com/abstract=5604802</a></li>
+    <li>Tolegen, B. Z., Sultanbayeva, G. S., Mukanov, B., Kalibekuly, D., &amp; Lozhnikova, O. P. (2025). Indicators of disinformation and challenges of fact-checking in Kazakhstan. <em>Herald of Journalism</em>, 76(2), 78–89. <a href="https://doi.org/10.26577/HJ202576206">https://doi.org/10.26577/HJ202576206</a></li>
+    <li>Wilkinson, K. (2026, March 3). <a href="https://fullfact.org/world/arab-fact-checking-lessons-from-partners-in-middle-east/">Strengthening Arab fact checking: lessons from partnering with the Arab Fact-Checking Network</a>. Full Fact.</li>
+  </ol>
+</section>
+
+</main>
+
+<footer>
+  <div class="horn-band" aria-hidden="true"></div>
+  <p>Akerke Mukhtarkyzy, PLS 419 final project, Nazarbayev University, 2026</p>
+</footer>
+
+<script>
+(() => {
+  const tip = document.createElement('div');
+  tip.className = 'tip';
+  tip.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(tip);
+  document.querySelectorAll('[data-tip]').forEach(el => {
+    el.addEventListener('pointermove', e => {
+      tip.textContent = el.dataset.tip;
+      tip.style.left = Math.min(e.clientX + 14, innerWidth - 250) + 'px';
+      tip.style.top = (e.clientY + 16) + 'px';
+      tip.classList.add('on');
+    });
+    el.addEventListener('pointerleave', () => tip.classList.remove('on'));
+  });
+
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && 'IntersectionObserver' in window) {
+    const stamps = document.querySelectorAll('.claim .stamp');
+    const io = new IntersectionObserver(entries => entries.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.remove('pending'); en.target.classList.add('thunk'); io.unobserve(en.target); }
+    }), { threshold: 0.9 });
+    stamps.forEach(s => { s.classList.add('pending'); io.observe(s); });
+  }
+
+
+  // reading progress (always on: it only reports position)
+  const bar = document.querySelector('.progress span');
+  let ticking = false;
+  const setP = () => {
+    const h = document.documentElement.scrollHeight - innerHeight;
+    bar.style.setProperty('--p', h > 0 ? Math.min(1, scrollY / h) : 0);
+    ticking = false;
+  };
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(setP); } }, { passive: true });
+  setP();
+
+  // entrance motion, only when html.anim was set in <head>
+  if (document.documentElement.classList.contains('anim')) {
+    const index = (list) => list.forEach((el, i) => el.style.setProperty('--i', i));
+    document.querySelectorAll('.waffle, .steps, .camps, .conditions').forEach(g => index([...g.children]));
+    index([...document.querySelectorAll('.bars .bar')]);
+    index([...document.querySelectorAll('.matrix .dot')]);
+    index([...document.querySelectorAll('.receipt li .stamp')]);
+    const targets = document.querySelectorAll('.sec-head, .note, .silent, .gap, .example, .statement, .waffle, .bars, .camps, .steps, .postcard, .claim, .conditions, .matrix, .closing');
+    const ro = new IntersectionObserver(entries => entries.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.add('in'); ro.unobserve(en.target); }
+    }), { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
+    targets.forEach(t => ro.observe(t));
+    // a fully clipped receipt never counts as visible, so start it from the paragraph above it
+    const rc = document.querySelector('.receipt');
+    if (rc) {
+      const ro2 = new IntersectionObserver(es => {
+        if (es.some(e => e.isIntersecting)) { rc.classList.add('in'); ro2.disconnect(); }
+      }, { rootMargin: '0px 0px -25% 0px' });
+      ro2.observe(rc.previousElementSibling || rc.parentElement);
+    }
+  }
+
+  const links = [...document.querySelectorAll('.nav a')];
+  const byId = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  if ('IntersectionObserver' in window) {
+    const so = new IntersectionObserver(entries => entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      const a = byId.get(en.target.id);
+      if (!a) return;
+      links.forEach(l => l.classList.remove('on'));
+      a.classList.add('on');
+      const ul = a.closest('ul');
+      ul.scrollTo({ left: a.parentElement.offsetLeft - 24, behavior: reduce ? 'auto' : 'smooth' });
+    }), { rootMargin: '-40% 0px -55% 0px' });
+    document.querySelectorAll('main section[id]').forEach(s => so.observe(s));
+  }
+})();
+</script>
+</body>
+</html>
