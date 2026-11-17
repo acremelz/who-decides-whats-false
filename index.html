@@ -44,9 +44,13 @@ a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid
 .cloud::before,.cloud::after{content:"";position:absolute;background:var(--card);border-radius:50%}
 .c1{width:150px;height:44px;top:78px;left:3%}.c1::before{width:64px;height:64px;top:-30px;left:24px}.c1::after{width:46px;height:46px;top:-20px;left:78px}
 .c2{width:120px;height:38px;bottom:56px;left:46%}.c2::before{width:52px;height:52px;top:-26px;left:18px}.c2::after{width:38px;height:38px;top:-16px;left:62px}
-.sky-btn{position:absolute;top:18px;right:4%;z-index:3;padding:0;border:0;background:none;cursor:pointer;border-radius:50%;color:inherit;-webkit-tap-highlight-color:transparent}
+.sky-btn{position:fixed;top:0;right:4vw;z-index:30;padding:0;border:0;background:none;cursor:pointer;border-radius:50%;color:inherit;-webkit-tap-highlight-color:transparent;transform-origin:top right;transform:translate(0,18px)}
+.sky-btn.dock-mode{transition:transform .45s cubic-bezier(.4,0,.2,1)}
+.sky-btn::before{content:"";position:absolute;inset:4%;border-radius:50%;background:var(--card);border:2px solid var(--ink);opacity:0;transition:opacity .3s ease}
+.sky-btn.docked::before{opacity:1}
+.sky-btn.away .sky-hint{opacity:0}
 .sky-btn:focus-visible{outline:3px solid var(--red);outline-offset:2px}
-.sun{display:block;width:110px;height:110px;overflow:visible}
+.sun{position:relative;display:block;width:110px;height:110px;overflow:visible}
 .hero-kz{font-family:var(--hand);font-weight:700;line-height:1.15;font-size:clamp(1.6rem,3.4vw,2.2rem);color:var(--blue-ink);margin:0 0 4px;transform:rotate(-2deg);transform-origin:left}
 h1{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,6.4vw,4.6rem);line-height:1.02;letter-spacing:-.02em;margin:0;text-shadow:4px 4px 0 var(--gold)}
 .dek{font-size:1.15rem;max-width:34em;margin:20px 0 14px;color:var(--ink)}
@@ -308,7 +312,7 @@ html.anim .matrix.in .dot{scale:1}
 html.anim .closing p{opacity:0;translate:0 18px;transition:opacity .8s ease .2s,translate .8s ease .2s}
 html.anim .closing.in p{opacity:1;translate:0 0}
 /* ---------- sun / moon ---------- */
-.sky-hint{position:absolute;right:88%;top:74%;white-space:nowrap;font-family:var(--hand);font-weight:700;font-size:1.3rem;color:var(--blue-ink);transform:rotate(-10deg);pointer-events:none}
+.sky-hint{position:absolute;right:88%;top:74%;white-space:nowrap;transition:opacity .3s ease;font-family:var(--hand);font-weight:700;font-size:1.3rem;color:var(--blue-ink);transform:rotate(-10deg);pointer-events:none}
 .sky-hint .night{display:none}
 html.dark .sky-hint .day{display:none}html.dark .sky-hint .night{display:inline}
 .sky-btn:hover .sun{animation:wiggle .6s ease}
@@ -347,7 +351,7 @@ html.dark main svg [stroke="#0B3550"]{stroke:#E8F3F8}
 html.dark .steps li:not(:last-child)::after{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path d='M2 10h14M11 4l6 6-6 6' fill='none' stroke='%23E8F3F8' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/></svg>")}
 html.dark .receipt::after{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='14'><path d='M0 0L8 12L16 0Z' fill='%23132B45'/><path d='M0 1L8 12L16 1' fill='none' stroke='%23E8F3F8' stroke-width='2'/></svg>")}
 @media print{html.anim *{opacity:1!important;translate:none!important;scale:none!important;clip-path:none!important;animation:none!important}}
-@media print{.stamp.pending{opacity:1}.nav{display:none}}
+@media print{.stamp.pending{opacity:1}.nav,.sky-btn{display:none}}
 </style>
 </head>
 <body>
@@ -876,12 +880,52 @@ html.dark .receipt::after{background-image:url("data:image/svg+xml;utf8,<svg xml
     )).catch(() => {});
   });
 
+  // The sun travels down the right margin as you read (wide screens),
+  // or tucks into the bottom-right corner (narrow screens), so it can always be tapped.
+  const hero = document.querySelector('.hero');
+  const navEl = document.querySelector('.nav');
+  const placeSky = () => {
+    const vw = innerWidth, vh = innerHeight;
+    const base = skyBtn.offsetWidth || 110;
+    const span = document.documentElement.scrollHeight - vh;
+    const p = span > 0 ? Math.min(1, Math.max(0, scrollY / span)) : 0;
+    const leaving = Math.min(1, Math.max(0, scrollY / 220));
+    const navH = navEl.offsetHeight;
+    // travel only if the shrunken sun fits in the margin beside the page
+    const pageEdge = document.querySelector('.page').getBoundingClientRect().right + 10;
+    const small = base * 0.62;
+    const slotLeft = vw - vw * 0.02 - small;           // sun's left edge when parked 2vw from the right
+    const room = slotLeft - (pageEdge + 8);
+    const travel = !reduce && room >= 0;
+    let x = 0, y, scale;
+    if (travel) {
+      scale = 1 - 0.38 * leaving;
+      const top = 18 + (navH + 16 - 18) * leaving;
+      const bottom = vh - base * scale - 28;
+      y = top + Math.max(0, bottom - top) * p;
+      x = leaving * vw * 0.02 - Math.sin(p * Math.PI) * Math.min(28, room);
+    } else {
+      const docked = hero.getBoundingClientRect().bottom < navH + 40;
+      scale = docked ? 0.6 : 1;
+      y = docked ? vh - base * scale - 16 : 18;
+      if (docked) x = vw * 0.04 - 14;
+      skyBtn.classList.toggle('docked', docked);
+    }
+    if (travel) skyBtn.classList.remove('docked');
+    skyBtn.classList.toggle('dock-mode', !travel && !reduce);
+    skyBtn.classList.toggle('away', leaving > 0.4);
+    skyBtn.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) scale(${scale.toFixed(3)})`;
+  };
+  placeSky();
+  addEventListener('resize', placeSky);
+
   // reading progress (always on: it only reports position)
   const bar = document.querySelector('.progress span');
   let ticking = false;
   const setP = () => {
     const h = document.documentElement.scrollHeight - innerHeight;
     bar.style.setProperty('--p', h > 0 ? Math.min(1, scrollY / h) : 0);
+    placeSky();
     ticking = false;
   };
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(setP); } }, { passive: true });
