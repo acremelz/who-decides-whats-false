@@ -254,9 +254,11 @@ html.anim .c1{animation:drift 14s ease-in-out infinite alternate}
 html.anim .c2{animation:drift 19s ease-in-out infinite alternate-reverse}
 html.anim .rays{animation:turn 40s linear infinite}
 html.anim .horn-band,html.anim .closing::before{animation:band 7s linear infinite}
-html.anim h1{animation:shadowIn .7s .25s ease-out both}
-html.anim .sticker-wrap{animation:popIn .75s cubic-bezier(.2,.8,.3,1.2) both}
-html.anim .sw1{animation-delay:.35s}html.anim .sw2{animation-delay:.5s}html.anim .sw3{animation-delay:.65s}
+html.anim h1{text-shadow:0 0 0 var(--gold)}
+html.anim .hero.in h1{animation:shadowIn .7s .25s ease-out both}
+html.anim .sticker-wrap{opacity:0}
+html.anim .hero.in .sticker-wrap{animation:popIn .75s cubic-bezier(.2,.8,.3,1.2) both}
+html.anim .hero.in .sw1{animation-delay:.35s}html.anim .hero.in .sw2{animation-delay:.5s}html.anim .hero.in .sw3{animation-delay:.65s}
 .sticker-wrap:hover .sticker{animation:wiggle .5s ease}
 /* section heads */
 html.anim .sec-num{opacity:0;rotate:-140deg;scale:.3;transition:opacity .5s ease,rotate .7s cubic-bezier(.2,.8,.3,1.2),scale .7s cubic-bezier(.2,.8,.3,1.2)}
@@ -287,9 +289,9 @@ html.anim .postcard:first-child{translate:-40px 0}html.anim .postcard:last-child
 html.anim .postcard.in{opacity:1;translate:0 0}
 /* receipt prints, then gets stamped */
 html.anim .receipt{clip-path:inset(0 -30px 100% -30px);transition:clip-path 1.1s steps(14,end)}
-html.anim .receipt.in{clip-path:inset(-30px -30px -30px -30px)}
+html.anim .receipt-wrap.in .receipt{clip-path:inset(-30px -30px -30px -30px)}
 html.anim .receipt .stamp{opacity:0}
-html.anim .receipt.in .stamp{animation:thunk .4s cubic-bezier(.2,.8,.3,1.3) both;animation-delay:calc(1.15s + var(--i,0) * .18s)}
+html.anim .receipt-wrap.in .receipt .stamp{animation:thunk .4s cubic-bezier(.2,.8,.3,1.3) both;animation-delay:calc(1.15s + var(--i,0) * .18s)}
 /* claims slide in; their stamps already thunk */
 html.anim .claim{opacity:0;translate:-28px 0;transition:opacity .5s ease,translate .55s cubic-bezier(.2,.8,.3,1)}
 html.anim .claim.in{opacity:1;translate:0 0}
@@ -585,6 +587,7 @@ html.anim .closing.in p{opacity:1;translate:0 0}
 
     <h3>The bill: we fact-checked our own proposal</h3>
     <p>The bill covers five costs: environmental, economic, labour, political and governance, and data ethics. For each, we fact-checked the claim a promoter would make, using the verdict scale fact-checkers use.</p>
+    <div class="receipt-wrap">
     <figure class="receipt" aria-labelledby="bill-title">
       <p class="receipt-title" id="bill-title">The bill at a glance</p>
       <ol>
@@ -596,6 +599,7 @@ html.anim .closing.in p{opacity:1;translate:0 0}
       </ol>
       <p class="receipt-total"><span>Total</span><a href="#verdict">a conditional yes</a></p>
     </figure>
+    </div>
 
     <article class="claim v-true" id="cost-environmental">
       <h4><small>Claim 1 <span class="cost">Environmental</span></small>“It barely uses any energy.”</h4>
@@ -776,14 +780,19 @@ html.anim .closing.in p{opacity:1;translate:0 0}
   });
 
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Replays: a class goes on when an element comes into view and comes off
+  // only once it is completely off screen, so the reset is never seen.
+  const replay = (els, cls, enterOpts) => {
+    if (!els.length) return;
+    const enter = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) en.target.classList.add(cls); }), enterOpts);
+    const leave = new IntersectionObserver(es => es.forEach(en => { if (!en.isIntersecting) en.target.classList.remove(cls); }), { threshold: 0 });
+    els.forEach(el => { enter.observe(el); leave.observe(el); });
+  };
   if (!reduce && 'IntersectionObserver' in window) {
-    const stamps = document.querySelectorAll('.claim .stamp');
-    const io = new IntersectionObserver(entries => entries.forEach(en => {
-      if (en.isIntersecting) { en.target.classList.remove('pending'); en.target.classList.add('thunk'); io.unobserve(en.target); }
-    }), { threshold: 0.9 });
-    stamps.forEach(s => { s.classList.add('pending'); io.observe(s); });
+    const stamps = [...document.querySelectorAll('.claim .stamp')];
+    stamps.forEach(st => st.classList.add('pending'));
+    replay(stamps, 'thunk', { threshold: 0.9 });
   }
-
 
   // reading progress (always on: it only reports position)
   const bar = document.querySelector('.progress span');
@@ -803,19 +812,8 @@ html.anim .closing.in p{opacity:1;translate:0 0}
     index([...document.querySelectorAll('.bars .bar')]);
     index([...document.querySelectorAll('.matrix .dot')]);
     index([...document.querySelectorAll('.receipt li .stamp')]);
-    const targets = document.querySelectorAll('.sec-head, .note, .silent, .gap, .example, .statement, .waffle, .bars, .camps, .steps, .postcard, .claim, .conditions, .matrix, .closing');
-    const ro = new IntersectionObserver(entries => entries.forEach(en => {
-      if (en.isIntersecting) { en.target.classList.add('in'); ro.unobserve(en.target); }
-    }), { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
-    targets.forEach(t => ro.observe(t));
-    // a fully clipped receipt never counts as visible, so start it from the paragraph above it
-    const rc = document.querySelector('.receipt');
-    if (rc) {
-      const ro2 = new IntersectionObserver(es => {
-        if (es.some(e => e.isIntersecting)) { rc.classList.add('in'); ro2.disconnect(); }
-      }, { rootMargin: '0px 0px -25% 0px' });
-      ro2.observe(rc.previousElementSibling || rc.parentElement);
-    }
+    const targets = [...document.querySelectorAll('.hero, .sec-head, .note, .silent, .gap, .example, .statement, .waffle, .bars, .camps, .steps, .postcard, .receipt-wrap, .claim, .conditions, .matrix, .closing')];
+    replay(targets, 'in', { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
   }
 
   const links = [...document.querySelectorAll('.nav a')];
